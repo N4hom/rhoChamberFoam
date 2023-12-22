@@ -1,0 +1,3 @@
+chamberFoam.C
+
+EXE = $(FOAM_APPBIN)/chamberFoam

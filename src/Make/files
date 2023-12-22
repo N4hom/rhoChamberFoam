@@ -1,0 +1,10 @@
+indexing/indexing.C
+lookupTable1D/lookupTables1D.C
+lookupTable2D/lookupTables2D.C
+Modifier/Modifier.C
+interpolationWeights1D/interpolationWeights1D.C
+tableReader/tableReader.C
+
+
+
+LIB = $(FOAM_USER_LIBBIN)/libNumerics

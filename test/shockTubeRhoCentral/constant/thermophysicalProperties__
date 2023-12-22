@@ -1,0 +1,130 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2212                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      thermophysicalProperties;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+thermoType
+{
+    type            heMyThermo;
+    mixture         pureMixture;
+    transport       const;
+    thermo          eTabulated;
+    equationOfState tabulatedThermoEOS;
+    specie          specie;
+    energy          tabulatedInternalEnergy;
+}
+
+mixture
+{
+    specie
+    {
+        molWeight       28.96;
+    }
+    
+    equationOfState
+    {
+        rhoCoeffs   // Quantity to be evaluated
+        {
+            file       "constant/rho.csv";
+            mod         ln;
+            delim       ",";
+            isReal      false;
+            flipTable   false;
+        }
+
+        pCoeffs
+        {
+            mod         ln;
+            n           30;
+            min         10;
+            delta       0.31034483;
+            isReal      false;
+        }
+        TCoeffs
+        {
+            mod         ln;
+
+            n           30;
+            min         5;
+            delta       0.24137931;
+            isReal      false;
+        }
+    }
+
+    thermodynamics
+    {
+
+        eCoeffs
+        {
+            file       "constant/e.csv";
+            mod         ln;
+            delim       ",";
+            isReal      false;
+            flipTable   false;
+        }
+
+        CvCoeffs
+        {
+            file       "constant/Cv.csv";
+            mod         ln;
+            delim       ",";
+            isReal      false;
+            flipTable   false;
+        }
+
+        CpCoeffs
+        {
+            file       "constant/Cp.csv";
+            mod         ln;
+            delim       ",";
+            isReal      false;
+            flipTable   false;
+        }
+
+        cSqrCoeffs
+        {
+            file       "constant/Cp.csv";
+            mod         ln;
+            delim       ",";
+            isReal      false;
+            flipTable   false;
+        }
+
+        pCoeffs
+        {
+            mod         ln;
+            n           30;
+            min         10;
+            delta       0.31034483;
+            isReal      false;
+        }
+        TCoeffs
+        {
+            mod         ln;
+
+            n           30;
+            min         5;
+            delta       0.24137931;
+            isReal      false;
+        }
+    }
+    transport
+    {
+        mu  0;   
+        Pr  1;
+    }
+}
+
+
+// ************************************************************************* //
