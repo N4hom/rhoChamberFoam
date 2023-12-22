@@ -107,14 +107,14 @@ surfaceScalarField neg
 
 surfaceScalarField phi("phi", fvc::flux(rhoU));
 
-Info<< "Creating turbulence model\n" << endl;
-autoPtr<compressible::turbulenceModel> turbulence
-(
-    compressible::turbulenceModel::New
-    (
-        rho,
-        U,
-        phi,
-        thermo
-    )
-);
+Info<< "Turbulence model turned off for now\n" << endl;
+// autoPtr<compressible::turbulenceModel> turbulence
+// (
+//     compressible::turbulenceModel::New
+//     (
+//         rho,
+//         U,
+//         phi,
+//         thermo
+//     )
+// );

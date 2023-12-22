@@ -41,7 +41,7 @@ Description
 // #include "rhoThermo.H"
 //#include "myThermo.H"
 #include "myRhoThermo.H"
-#include "turbulentFluidThermoModel.H"
+//#include "turbulentFluidThermoModel.H"
 #include "fixedRhoFvPatchScalarField.H"
 #include "directionInterpolate.H"
 #include "localEulerDdtScheme.H"
@@ -71,7 +71,7 @@ int main(int argc, char *argv[])
     #include "createFieldRefs.H"
     #include "createTimeControls.H"
 
-    turbulence->validate();
+    //turbulence->validate();
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
@@ -245,8 +245,8 @@ int main(int argc, char *argv[])
             phiEp += meshPhi*(a_pos*p_pos + a_neg*p_neg);
         }
 
-        volScalarField muEff("muEff", turbulence->muEff());
-        volTensorField tauMC("tauMC", muEff*dev2(Foam::T(fvc::grad(U))));
+        //volScalarField muEff("muEff", turbulence->muEff());
+        //volTensorField tauMC("tauMC", muEff*dev2(Foam::T(fvc::grad(U))));
 
         Info << "rho before solution " << rho << endl;
 
@@ -309,7 +309,7 @@ int main(int argc, char *argv[])
                 e.boundaryField() + 0.5*magSqr(U.boundaryField())
             );
 
-        if (!inviscid)
+        /*if (!inviscid)
         {
             solve
             (
@@ -318,7 +318,7 @@ int main(int argc, char *argv[])
             );
             thermo.correct();
             rhoE = rho*(e + 0.5*magSqr(U));
-        }
+        }*/
 
         Info << "thermo quantities after correction \n " << endl;
         Info << "p " << p << endl;
@@ -333,9 +333,9 @@ int main(int argc, char *argv[])
         p.correctBoundaryConditions();
         rho.boundaryFieldRef() == psi.boundaryField()*p.boundaryField();*/
 
-        //thermo.updateP(rho, T);
+        
 
-        turbulence->correct();
+        //turbulence->correct();
 
         runTime.write();
 
