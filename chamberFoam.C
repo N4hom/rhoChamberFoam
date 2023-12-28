@@ -266,27 +266,27 @@ int main(int argc, char *argv[])
         U.correctBoundaryConditions();
         rhoU.boundaryFieldRef() == rho.boundaryField()*U.boundaryField();
 
-        if (!inviscid)
-        {
-            solve
-            (
-                fvm::ddt(rho, U) - fvc::ddt(rho, U)
-              - fvm::laplacian(muEff, U)
-              - fvc::div(tauMC)
-            );
-            rhoU = rho*U;
-        }
+        // if (!inviscid)
+        // {
+        //     solve
+        //     (
+        //         fvm::ddt(rho, U) - fvc::ddt(rho, U)
+        //       - fvm::laplacian(muEff, U)
+        //       - fvc::div(tauMC)
+        //     );
+        //     rhoU = rho*U;
+        // }
 
         // --- Solve energy
-        surfaceScalarField sigmaDotU
-        (
-            "sigmaDotU",
-            (
-                fvc::interpolate(muEff)*mesh.magSf()*fvc::snGrad(U)
-              + fvc::dotInterpolate(mesh.Sf(), tauMC)
-            )
-          & (a_pos*U_pos + a_neg*U_neg)
-        );
+        // surfaceScalarField sigmaDotU
+        // (
+        //     "sigmaDotU",
+        //     (
+        //         fvc::interpolate(muEff)*mesh.magSf()*fvc::snGrad(U)
+        //       + fvc::dotInterpolate(mesh.Sf(), tauMC)
+        //     )
+        //   & (a_pos*U_pos + a_neg*U_neg)
+        // );
 
 
         Info << "rhoE before solution " << rhoE << endl;
@@ -294,7 +294,7 @@ int main(int argc, char *argv[])
         (
             fvm::ddt(rhoE)
           + fvc::div(phiEp)
-          - fvc::div(sigmaDotU)
+          //- fvc::div(sigmaDotU)
         );
         Info << "rhoE after solution " << rhoE << endl;
 

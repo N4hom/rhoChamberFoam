@@ -19,10 +19,10 @@ thermoType
     type            myHeRhoThermo;
     mixture         pureMixture;
     transport       const;
-    thermo          myPerfectGas;
-    equationOfState tabulatedEOS;
+    thermo          eConst;
+    equationOfState perfectGas;
     specie          mySpecie;
-    energy          tabulatedInternalEnergy;
+    energy          sensibleInternalEnergy;
 }
 
 mixture
@@ -64,6 +64,8 @@ mixture
 
     thermodynamics
     {
+        Cv   705.0;
+        Hf   0.0;
 
         eCoeffs
         {
