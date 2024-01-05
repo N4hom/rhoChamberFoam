@@ -17,10 +17,10 @@ FoamFile
 thermoType
 {
     type            myHeRhoThermo;
-    mixture         pureMixture;
+    mixture         myPureMixture;
     transport       const;
     thermo          eConst;
-    equationOfState perfectGas;
+    equationOfState myPerfectGas;
     specie          mySpecie;
     energy          sensibleInternalEnergy;
 }
@@ -64,8 +64,9 @@ mixture
 
     thermodynamics
     {
-        Cv   705.0;
+        Cv   717.7;
         Hf   0.0;
+        Tref   0.0;
 
         eCoeffs
         {

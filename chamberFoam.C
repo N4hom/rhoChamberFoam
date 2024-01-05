@@ -123,6 +123,8 @@ int main(int argc, char *argv[])
             mesh.update();
         }
 
+        
+
         // --- Directed interpolation of primitive fields onto faces
 
         surfaceScalarField rho_pos(interpolate(rho, pos));
@@ -248,23 +250,43 @@ int main(int argc, char *argv[])
         //volScalarField muEff("muEff", turbulence->muEff());
         //volTensorField tauMC("tauMC", muEff*dev2(Foam::T(fvc::grad(U))));
 
-        Info << "rho before solution " << rho << endl;
+        Info << " --------------------------- Fluxes --------------------------------- " << endl;
+
+        Info << "phi \n " << phi << endl;
+        Info << "phiU \n " << phiU << endl;
+        Info << "phiUp \n " << phiUp << endl; 
+        Info << "phiEp \n " << phiEp << endl; 
+
+
+        Info << "-------------------------- Conserved quantities --------------------- " << endl;
+
+        Info << "rho \n " << rho << endl;
+        Info << "rhoU \n " << rhoU << endl;
+        Info << "rhoE \n " << rhoE << endl;
+
+        Info << " -------------------------------------------------------------------- " << endl;
+
+
 
         // --- Solve density
+
+        Info << "Solving for density \n" << endl;
         solve(fvm::ddt(rho) + fvc::div(phi));
+        rho.correctBoundaryConditions();
 
-        Info << "Solution for rho " << rho << endl;
 
-        Info << "rhoU before solution " << rhoU << endl;
         // --- Solve momentum
+        Info << "Solving for momentum \n " << endl;
         solve(fvm::ddt(rhoU) + fvc::div(phiUp));
-        Info << "rhoU after solution " << rhoU << endl;
 
         U.ref() =
             rhoU()
            /rho();
         U.correctBoundaryConditions();
         rhoU.boundaryFieldRef() == rho.boundaryField()*U.boundaryField();
+
+        // Turbulence models depend on the thermophysicalModels library.
+        // Turned off for now.
 
         // if (!inviscid)
         // {
@@ -288,21 +310,28 @@ int main(int argc, char *argv[])
         //   & (a_pos*U_pos + a_neg*U_neg)
         // );
 
-
-        Info << "rhoE before solution " << rhoE << endl;
+        Info << "Solving for energy " << endl;
         solve
         (
             fvm::ddt(rhoE)
           + fvc::div(phiEp)
           //- fvc::div(sigmaDotU)
         );
-        Info << "rhoE after solution " << rhoE << endl;
 
         e = rhoE/rho - 0.5*magSqr(U);
-        Info << "Internal energy " <<  e << endl;
-        e.correctBoundaryConditions();
+
+        Info << "--------------------Solution------------ " << endl;
+        Info << "rho \n " << rho << endl;
+        Info << "rhoU \n " << rhoU << endl;
+        Info << "rhoE \n " << rhoE << endl;
+        Info << "-----------------------------------------" << endl;
+
+        //e.correctBoundaryConditions();
+
         Info << "Correcting thermo quantities " << endl;
-        thermo.correct();
+
+        // Calculate new temperature, pressure, thermophysical properties
+        thermo.correctFromRhoE();
         rhoE.boundaryFieldRef() ==
             rho.boundaryField()*
             (
@@ -321,9 +350,11 @@ int main(int argc, char *argv[])
         }*/
 
         Info << "thermo quantities after correction \n " << endl;
+
         Info << "p " << p << endl;
         Info << "rho " << rho << endl;
         Info << "T " << T << endl;
+        Info << "c " << c << endl;
 
 
 

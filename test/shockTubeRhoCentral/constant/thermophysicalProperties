@@ -34,7 +34,7 @@ mixture
     thermodynamics
     {
         Cp              1004.5;
-        Cv              718;
+        Cv              705.0;
         Hf              0;
         Tref            0;
     }

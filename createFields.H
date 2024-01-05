@@ -25,8 +25,9 @@ autoPtr<myRhoThermo> pThermo
 myRhoThermo& thermo = pThermo();
 
 
+volScalarField& e = thermo.eRef();
 
-volScalarField& e = thermo.he();
+volScalarField& rho = thermo.getRho();
 
 Info<< "Reading field U\n" << endl;
 volVectorField U
@@ -42,19 +43,35 @@ volVectorField U
     mesh
 );
 
-volScalarField rho
-(
-    IOobject
-    (
-        "rho",
-        runTime.timeName(),
-        mesh,
-        IOobject::NO_READ,
-        IOobject::AUTO_WRITE
-    ),
-    thermo.rho()
-);
-Info << "rho after construction " << rho << endl;
+// volVectorField internalEnergy
+// (
+//     IOobject
+//     (
+//         "internalEnergy",
+//         runTime.timeName(),
+//         mesh,
+//         IOobject::NO_READ,
+//         IOobject::AUTO_WRITE
+//     ),
+//     e
+// );
+
+// Info << "field named e created " << endl;
+// Info << internalEnergy << endl;
+
+// volScalarField rho
+// (
+//     IOobject
+//     (
+//         "rho",
+//         runTime.timeName(),
+//         mesh,
+//         IOobject::MUST_READ,
+//         IOobject::AUTO_WRITE
+//     ),
+//     thermo.rho()
+// );
+
 volVectorField rhoU
 (
     IOobject

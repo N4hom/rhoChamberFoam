@@ -1,6 +1,7 @@
+Info << "volScalarField& p = thermo.p() " << endl;
 volScalarField& p = thermo.p();
 const volScalarField& T = thermo.T();
-const volScalarField& c = thermo.mu();
+const volScalarField& c = thermo.speedOfSound();
 const volScalarField& mu = thermo.mu();
 
 Info << "p[1] = " << p[1] << endl;
