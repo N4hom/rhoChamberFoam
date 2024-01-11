@@ -22,9 +22,9 @@ startTime       0;
 
 stopAt          endTime;
 
-endTime         1e-07;
+endTime         100e-04;
 
-deltaT          1e-07;
+deltaT          1e-08;
 
 writeControl    adjustable;
 
