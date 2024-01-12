@@ -47,6 +47,7 @@ Description
 #include "localEulerDdtScheme.H"
 #include "fvcSmooth.H"
 #include "lookupTables2D.H"
+#include "radiationModel.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
@@ -79,8 +80,7 @@ int main(int argc, char *argv[])
 
     const dimensionedScalar v_zero(dimVolume/dimTime, Zero);
 
-    Info << "Defining pressure " << p << endl;
-    Info << "Defining temperature " << T << endl;
+    
 
     // Courant numbers used to adjust the time-step
     scalar CoNum = 0.0;
@@ -250,21 +250,21 @@ int main(int argc, char *argv[])
         //volScalarField muEff("muEff", turbulence->muEff());
         //volTensorField tauMC("tauMC", muEff*dev2(Foam::T(fvc::grad(U))));
 
-        Info << " --------------------------- Fluxes --------------------------------- " << endl;
+        // Info << " --------------------------- Fluxes --------------------------------- " << endl;
 
-        Info << "phi \n " << phi << endl;
-        Info << "phiU \n " << phiU << endl;
-        Info << "phiUp \n " << phiUp << endl; 
-        Info << "phiEp \n " << phiEp << endl; 
+        // Info << "phi \n " << phi << endl;
+        // Info << "phiU \n " << phiU << endl;
+        // Info << "phiUp \n " << phiUp << endl; 
+        // Info << "phiEp \n " << phiEp << endl; 
 
 
-        Info << "-------------------------- Conserved quantities --------------------- " << endl;
+        // Info << "-------------------------- Conserved quantities --------------------- " << endl;
 
-        Info << "rho \n " << rho << endl;
-        Info << "rhoU \n " << rhoU << endl;
-        Info << "rhoE \n " << rhoE << endl;
+        // Info << "rho \n " << rho << endl;
+        // Info << "rhoU \n " << rhoU << endl;
+        // Info << "rhoE \n " << rhoE << endl;
 
-        Info << " -------------------------------------------------------------------- " << endl;
+        // Info << " -------------------------------------------------------------------- " << endl;
 
 
 
@@ -320,11 +320,11 @@ int main(int argc, char *argv[])
 
         e = rhoE/rho - 0.5*magSqr(U);
 
-        Info << "--------------------Solution------------ " << endl;
-        Info << "rho \n " << rho << endl;
-        Info << "rhoU \n " << rhoU << endl;
-        Info << "rhoE \n " << rhoE << endl;
-        Info << "-----------------------------------------" << endl;
+        // Info << "--------------------Solution------------ " << endl;
+        // Info << "rho \n " << rho << endl;
+        // Info << "rhoU \n " << rhoU << endl;
+        // Info << "rhoE \n " << rhoE << endl;
+        // Info << "-----------------------------------------" << endl;
 
         //e.correctBoundaryConditions();
 
@@ -349,12 +349,12 @@ int main(int argc, char *argv[])
             rhoE = rho*(e + 0.5*magSqr(U));
         }*/
 
-        Info << "thermo quantities after correction \n " << endl;
+        //Info << "thermo quantities after correction \n " << endl;
 
-        Info << "p " << p << endl;
-        Info << "rho " << rho << endl;
-        Info << "T " << T << endl;
-        Info << "c " << c << endl;
+        // Info << "p " << p << endl;
+        // Info << "rho " << rho << endl;
+        // Info << "T " << T << endl;
+        // Info << "c " << c << endl;
 
 
 

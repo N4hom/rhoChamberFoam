@@ -886,6 +886,8 @@ $(WM_PROJECT_DIR)/src/OpenFOAM/lnInclude/stringOpsEvaluate.H \
 $(WM_PROJECT_DIR)/src/OpenFOAM/lnInclude/stringOpsTemplates.C \
 $(WM_PROJECT_DIR)/src/tableReaders/lnInclude/tableReaderTemplates.C \
 $(WM_PROJECT_DIR)/src/tableReaders/lnInclude/lookupTable2DTemplates.C \
+$(WM_PROJECT_DIR)/src/newThermophysicalModels/myRadiation/lnInclude/radiationModel.H \
+$(WM_PROJECT_DIR)/src/newThermophysicalModels/myRadiation/lnInclude/absorptionEmissionModel.H \
 $(WM_PROJECT_DIR)/src/OpenFOAM/lnInclude/postProcess.H \
 $(WM_PROJECT_DIR)/src/OpenFOAM/lnInclude/addRegionOption.H \
 $(WM_PROJECT_DIR)/src/OpenFOAM/lnInclude/addFunctionObjectOptions.H \
@@ -899,6 +901,7 @@ $(WM_PROJECT_DIR)/src/OpenFOAM/lnInclude/createTime.H \
 $(WM_PROJECT_DIR)/src/dynamicFvMesh/lnInclude/createDynamicFvMesh.H \
 createFields.H \
 $(WM_PROJECT_DIR)/src/finiteVolume/lnInclude/createRDeltaT.H \
+$(WM_PROJECT_DIR)/src/newThermophysicalModels/myRadiation/lnInclude/createRadiationModel.H \
 createFieldRefs.H \
 $(WM_PROJECT_DIR)/src/finiteVolume/lnInclude/createTimeControls.H \
 readFluxScheme.H \
