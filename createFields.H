@@ -124,6 +124,10 @@ surfaceScalarField neg
 
 surfaceScalarField phi("phi", fvc::flux(rhoU));
 
+
+#include "createRadiationModel.H"
+
+
 Info<< "Turbulence model turned off for now\n" << endl;
 // autoPtr<compressible::turbulenceModel> turbulence
 // (
