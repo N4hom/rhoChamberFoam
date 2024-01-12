@@ -861,11 +861,11 @@ $(WM_PROJECT_DIR)/src/OpenFOAM/lnInclude/scalarRangesI.H \
 $(WM_PROJECT_DIR)/src/dynamicFvMesh/lnInclude/dynamicFvMesh.H \
 $(WM_PROJECT_DIR)/src/OpenFOAM/lnInclude/timeControl.H \
 $(WM_PROJECT_DIR)/src/OpenFOAM/lnInclude/timeControlI.H \
-$(WM_PROJECT_DIR)/src/thermophysicalModels/myBasic/lnInclude/myRhoThermo.H \
-$(WM_PROJECT_DIR)/src/thermophysicalModels/myBasic/lnInclude/myFluidThermo.H \
-$(WM_PROJECT_DIR)/src/thermophysicalModels/myBasic/lnInclude/myBasicThermo.H \
+$(WM_PROJECT_DIR)/src/newThermophysicalModels/myBasic/lnInclude/myRhoThermo.H \
+$(WM_PROJECT_DIR)/src/newThermophysicalModels/myBasic/lnInclude/myFluidThermo.H \
+$(WM_PROJECT_DIR)/src/newThermophysicalModels/myBasic/lnInclude/myBasicThermo.H \
 $(WM_PROJECT_DIR)/src/OpenFOAM/lnInclude/wordIOList.H \
-$(WM_PROJECT_DIR)/src/thermophysicalModels/myBasic/lnInclude/myBasicThermoTemplates.C \
+$(WM_PROJECT_DIR)/src/newThermophysicalModels/myBasic/lnInclude/myBasicThermoTemplates.C \
 $(WM_PROJECT_DIR)/src/transportModels/compressible/lnInclude/compressibleTransportModel.H \
 BCs/lnInclude/fixedRhoFvPatchScalarField.H \
 directionInterpolate.H \

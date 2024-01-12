@@ -38,7 +38,7 @@
 
 # 8 "<command-line>" 2
 # 1 "Make/options"
-EXE_INC = -IBCs/lnInclude -I$(LIB_SRC)/numerics/lnInclude/ -I$(LIB_SRC)/finiteVolume/lnInclude -I$(LIB_SRC)/meshTools/lnInclude -I$(LIB_SRC)/transportModels/compressible/lnInclude -I$(LIB_SRC)/TurbulenceModels/turbulenceModels/lnInclude -I$(LIB_SRC)/TurbulenceModels/compressible/lnInclude -I$(LIB_SRC)/dynamicFvMesh/lnInclude -I$(FOAM_SRC)/tableReaders/lnInclude -I$(FOAM_SRC)/thermophysicalModels/myBasic/lnInclude -I$(FOAM_SRC)/thermophysicalModels/mySpecie/lnInclude 
+EXE_INC = -IBCs/lnInclude -I$(LIB_SRC)/numerics/lnInclude/ -I$(LIB_SRC)/finiteVolume/lnInclude -I$(LIB_SRC)/meshTools/lnInclude -I$(LIB_SRC)/transportModels/compressible/lnInclude -I$(LIB_SRC)/TurbulenceModels/turbulenceModels/lnInclude -I$(LIB_SRC)/TurbulenceModels/compressible/lnInclude -I$(LIB_SRC)/dynamicFvMesh/lnInclude -I$(FOAM_SRC)/tableReaders/lnInclude -I$(FOAM_SRC)/newThermophysicalModels/myBasic/lnInclude -I$(FOAM_SRC)/newThermophysicalModels/mySpecie/lnInclude 
 # 13 "Make/options"
 
 EXE_LIBS = -lfiniteVolume -lfvOptions -lmeshTools -lcompressibleTransportModels -lturbulenceModels -lcompressibleTurbulenceModels -lthermoTools -ldynamicFvMesh -ltopoChangerFvMesh -L$(FOAM_USER_LIBBIN) -lmyFluidThermophysicalModels -L$(FOAM_USER_LIBBIN) -lmySpecie
