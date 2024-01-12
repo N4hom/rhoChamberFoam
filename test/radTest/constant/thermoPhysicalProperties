@@ -1,0 +1,92 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.3.0                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      phaseProperties;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+type        basic;
+thermoType
+{
+    transport const;
+    thermo      eTabulated;
+    equationOfState tabulatedMG;
+}
+
+//Properties of flibe
+
+specie
+{
+    molWeight       10;
+    ionized false;
+}
+transport
+{
+    mu              0;              // Inviscid
+    Pr              1;              // Prandtl number
+}
+equationOfState
+{
+    pcoeffs
+    {
+        file       "constant/pIonBlendedExt.csv";
+        mod         ln;
+        delim       ",";
+        isReal      false;
+        flipTable   false;
+    }
+
+    rhocoeffs
+    {
+        
+        file        "constant/rhoScale.csv";
+        delim        ",";
+    }
+    ecoeffs
+    {
+        mod         ln;
+
+        n           66;
+        min         16;
+        delta       0.1;
+        isReal      false;
+    }
+}
+thermodynamics
+{
+    TCoeffs
+    {
+        file        "constant/TIonBlendedExt.csv";
+        mod          ln;
+        delim       ",";
+        isReal      false;
+        flipTable   false;
+    }
+
+    rhoCoeffs
+    {
+        file        "constant/rhoScale.csv";
+        delim        ",";
+    }
+    eCoeffs
+    {
+        mod         ln;
+        n           66;
+        min         16;
+        delta       0.1;
+        isReal      false;
+    }
+}
+
+ 
+// ************************************************************************* //
