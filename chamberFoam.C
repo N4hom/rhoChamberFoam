@@ -310,6 +310,14 @@ int main(int argc, char *argv[])
         //   & (a_pos*U_pos + a_neg*U_neg)
         // );
 
+
+
+        // For some reason the radiation source cannot be added here because there would be an incompatibility
+        // This is the error that I get (for future reference):
+
+        // Incompatible fields for operation
+        // [rhoE] - [thermo:e]
+
         Info << "Solving for energy " << endl;
         solve
         (
@@ -338,6 +346,24 @@ int main(int argc, char *argv[])
                 e.boundaryField() + 0.5*magSqr(U.boundaryField())
             );
 
+        if (radiation->radiation())
+        {
+            Info << "Radiation is on \n" << endl;
+
+            Info << "Radiation correct \n " << endl;
+            radiation->correct();
+
+            Info << "Correcting internal energy to account for radiation \n " << endl;
+            solve
+            (
+                fvm::ddt(rho, e) - fvc::ddt(rho, e)
+                - radiation->Sh(thermo, e)
+              //- fvm::laplacian(turbulence->alphaEff(), e)
+            );
+            thermo.correctFromRhoE();
+            rhoE = rho*(e + 0.5*magSqr(U));
+        }
+
         /*if (!inviscid)
         {
             solve
@@ -357,6 +383,7 @@ int main(int argc, char *argv[])
         // Info << "c " << c << endl;
 
 
+        // Pressure correction of internal field and boundary is performed in correctFromRhoE()
 
         /*p.ref() =
             rho()
