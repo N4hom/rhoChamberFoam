@@ -1,0 +1,3 @@
+formForce/formForce.C
+
+LIB = $(FOAM_USER_LIBBIN)/libforces
