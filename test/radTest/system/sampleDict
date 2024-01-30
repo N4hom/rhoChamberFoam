@@ -29,9 +29,7 @@ interpolationScheme cell;
 // Fields to sample.
 fields
 (
-    p
-    rho
-    U
+    G
     T
 );
 
@@ -43,8 +41,8 @@ sets
         type        cellCentre;
         axis        x;
 
-        start       (-5 0 0);
-        end         (5 0 0);
+        start       (0 0 0);
+        end         (1.0 0 0);
     }
 );
 

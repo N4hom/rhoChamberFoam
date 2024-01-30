@@ -68,7 +68,7 @@ mixture
         {
             file        "constant/T.csv";
             mod          ln;
-            delim       ";";
+            delim       ", ";
             isReal      false;
             flipTable   false;
         }
@@ -76,17 +76,17 @@ mixture
         rhoCoeffs
         {
             mod         log10;
-            n           7;
-            delta       1.0;
-            min         -3.0;
+            n           2;
+            delta       1;
+            min         -1;
             isReal      false;
         }
         eCoeffs
         {
             mod         ln;
-            n           40;
-            min         11.8748;
-            delta       0.1;
+            n           55;
+            min         -50;
+            delta       1;
             isReal      false;
         }
     }

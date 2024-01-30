@@ -10,17 +10,17 @@ FoamFile
     version     2.0;
     format      ascii;
     class       dictionary;
-    object      boundaryRadiationProperties;
+    object      myRadiationProperties;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-leftWall
-{
-    type            myLookup;
-    emissivity      1.0;
-    absorptivity    1.0;
-}
+radiation       off;
 
+myRadiationModel  myNone;
+
+
+
+scatterModel none;
 
 
 // ************************************************************************* //

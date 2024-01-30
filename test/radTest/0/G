@@ -20,9 +20,15 @@ internalField   uniform 0;
 
 boundaryField
 {
-    sides
+    rightWall
     {
-        type            myMarshakRadiation;
+        type            fixedValue;
+        value            uniform 0;
+    }
+    leftWall
+    {
+        type            myMarshakRadiationFixedTemperature;
+        Trad            uniform 6029.62;  // temperature such that the flux F = c/4
     }
 
     empty

@@ -80,7 +80,7 @@ int main(int argc, char *argv[])
 
     const dimensionedScalar v_zero(dimVolume/dimTime, Zero);
 
-    
+    bool hydrodynamics(false);
 
     // Courant numbers used to adjust the time-step
     scalar CoNum = 0.0;
@@ -266,7 +266,9 @@ int main(int argc, char *argv[])
 
         // Info << " -------------------------------------------------------------------- " << endl;
 
-
+        if (hydrodynamics)
+        {
+            
 
         // --- Solve density
 
@@ -345,6 +347,7 @@ int main(int argc, char *argv[])
             (
                 e.boundaryField() + 0.5*magSqr(U.boundaryField())
             );
+        }
 
         if (radiation->radiation())
         {
@@ -356,14 +359,20 @@ int main(int argc, char *argv[])
             Info << "Correcting internal energy to account for radiation \n " << endl;
             solve
             (
-                fvm::ddt(rho, e) - fvc::ddt(rho, e)
+                fvm::ddt(rho, e) 
+                //- fvc::ddt(rho, e)
                 - radiation->Sh(thermo, e)
               //- fvm::laplacian(turbulence->alphaEff(), e)
             );
-            thermo.correctFromRhoE();
-            rhoE = rho*(e + 0.5*magSqr(U));
+
+            thermo.correctTemperature();
         }
 
+        if (hydrodynamics)
+        {
+            thermo.correctFromRhoE();
+            rhoE = rho*(e + 0.5*magSqr(U));    
+        }
         /*if (!inviscid)
         {
             solve
