@@ -8,7 +8,7 @@
 FoamFile
 {
     version     2.0;
-    format      ascii;
+    format      binary;
     arch        "LSB;label=32;scalar=64";
     class       polyBoundaryMesh;
     location    "constant/polyMesh";
@@ -16,20 +16,26 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-2
+3
 (
-    sides
+    leftWall
     {
         type            patch;
-        nFaces          2;
-        startFace       99;
+        nFaces          1;
+        startFace       999;
+    }
+    rightWall
+    {
+        type            patch;
+        nFaces          1;
+        startFace       1000;
     }
     empty
     {
         type            empty;
         inGroups        1(empty);
-        nFaces          400;
-        startFace       101;
+        nFaces          4000;
+        startFace       1001;
     }
 )
 

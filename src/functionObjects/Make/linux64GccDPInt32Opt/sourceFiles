@@ -1,4 +1,5 @@
 SOURCE = \
 formForce/formForce.C \
+timeOfArrival/timeOfArrival.C \
 
 # sources

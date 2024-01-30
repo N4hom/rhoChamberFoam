@@ -30,6 +30,8 @@ volScalarField& e = thermo.eRef();
 volScalarField& rho = thermo.getRho();
 
 Info<< "Reading field U\n" << endl;
+
+
 volVectorField U
 (
     IOobject

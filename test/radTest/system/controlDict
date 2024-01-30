@@ -18,21 +18,21 @@ application     chamberFoam;
 
 startFrom       startTime;
 
-startTime       0;
+startTime       1.1e-8;
 
 stopAt          endTime;
 
-endTime         100e-04;
+endTime         1.1e-6;
 
-deltaT          1e-07;
+deltaT          1e-13;
 
 writeControl    adjustable;
 
-writeInterval   1e-3;
+writeInterval   1e-7;
 
 purgeWrite      0;
 
-writeFormat     ascii;
+writeFormat     binary;
 
 writePrecision  6;
 
@@ -46,7 +46,7 @@ runTimeModifiable true;
 
 adjustTimeStep  yes;
 
-maxCo           0.2;
+maxCo           0.01;
 
 maxDeltaT       1;
 

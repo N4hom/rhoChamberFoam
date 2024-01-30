@@ -1,3 +1,4 @@
 formForce/formForce.C
+timeOfArrival/timeOfArrival.C
 
 LIB = $(FOAM_USER_LIBBIN)/libforces
