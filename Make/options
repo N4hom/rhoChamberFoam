@@ -7,10 +7,10 @@ EXE_INC = \
     -I$(LIB_SRC)/TurbulenceModels/turbulenceModels/lnInclude \
     -I$(LIB_SRC)/TurbulenceModels/compressible/lnInclude \
     -I$(LIB_SRC)/dynamicFvMesh/lnInclude \
-    -I$(FOAM_SRC)/tableReaders/lnInclude \
-    -I$(FOAM_SRC)/newThermophysicalModels/myBasic/lnInclude \
-    -I$(FOAM_SRC)/newThermophysicalModels/mySpecie/lnInclude \
-    -I$(FOAM_SRC)/newThermophysicalModels/myRadiation/lnInclude 
+    -I$/src/tableReaders/lnInclude \
+    -I$/src/newThermophysicalModels/myBasic/lnInclude \
+    -I$/src/newThermophysicalModels/mySpecie/lnInclude \
+    -I$/src/newThermophysicalModels/myRadiation/lnInclude 
 
 EXE_LIBS = \
     -lfiniteVolume \

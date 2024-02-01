@@ -1,0 +1,119 @@
+/*---------------------------------------------------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  9
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+Build  : 9-00b327d198db
+Exec   : blockMesh
+Date   : Jan 11 2024
+Time   : 12:21:02
+Host   : "nuen-mj0jdqvm.engr.tamu.edu"
+PID    : 407518
+I/O    : uncollated
+Case   : /home/grads/n/nahom.habtemariam/OpenFOAM/blastfoamfusion/validation/blastFoam/Sedov/Sedov_3D
+nProcs : 1
+sigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 10)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Reading "blockMeshDict"
+
+Creating block mesh from
+    "system/blockMeshDict"
+Using #calcEntry at line 20 in file "/home/grads/n/nahom.habtemariam/OpenFOAM/blastfoamfusion/validation/blastFoam/Sedov/Sedov_3D/system/blockMeshDict"
+Using #codeStream with "/home/grads/n/nahom.habtemariam/OpenFOAM/blastfoamfusion/validation/blastFoam/Sedov/Sedov_3D/dynamicCode/platforms/linux64GccDPInt32Opt/lib/libcodeStream_a4f089c6f70b3c9d06c761fe935098432782bec2.so"
+Creating new library in "dynamicCode/_a4f089c6f70b3c9d06c761fe935098432782bec2/platforms/linux64GccDPInt32Opt/lib/libcodeStream_a4f089c6f70b3c9d06c761fe935098432782bec2.so"
+"/home/grads/n/nahom.habtemariam/OpenFOAM/OpenFOAM-9/etc/codeTemplates/dynamicCode/codeStreamTemplate.C" "/home/grads/n/nahom.habtemariam/OpenFOAM/blastfoamfusion/validation/blastFoam/Sedov/Sedov_3D/dynamicCode/_a4f089c6f70b3c9d06c761fe935098432782bec2/codeStreamTemplate.C"
+Invoking "wmake -s libso /home/grads/n/nahom.habtemariam/OpenFOAM/blastfoamfusion/validation/blastFoam/Sedov/Sedov_3D/dynamicCode/_a4f089c6f70b3c9d06c761fe935098432782bec2"
+wmake libso /home/grads/n/nahom.habtemariam/OpenFOAM/blastfoamfusion/validation/blastFoam/Sedov/Sedov_3D/dynamicCode/_a4f089c6f70b3c9d06c761fe935098432782bec2
+    ln: ./lnInclude
+    wmkdep: codeStreamTemplate.C
+    Ctoo: codeStreamTemplate.C
+    ld: /home/grads/n/nahom.habtemariam/OpenFOAM/blastfoamfusion/validation/blastFoam/Sedov/Sedov_3D/dynamicCode/_a4f089c6f70b3c9d06c761fe935098432782bec2/../platforms/linux64GccDPInt32Opt/lib/libcodeStream_a4f089c6f70b3c9d06c761fe935098432782bec2.so
+codeStream : dictionary:"/home/grads/n/nahom.habtemariam/OpenFOAM/blastfoamfusion/validation/blastFoam/Sedov/Sedov_3D/system/blockMeshDict" master-only-reading:1
+Opening cached dictionary:"/home/grads/n/nahom.habtemariam/OpenFOAM/blastfoamfusion/validation/blastFoam/Sedov/Sedov_3D/dynamicCode/platforms/linux64GccDPInt32Opt/lib/libcodeStream_a4f089c6f70b3c9d06c761fe935098432782bec2.so"
+codeStream : dictionary:"/home/grads/n/nahom.habtemariam/OpenFOAM/blastfoamfusion/validation/blastFoam/Sedov/Sedov_3D/system/blockMeshDict" master-only-reading:1
+Using #calcEntry at line 21 in file "/home/grads/n/nahom.habtemariam/OpenFOAM/blastfoamfusion/validation/blastFoam/Sedov/Sedov_3D/system/blockMeshDict"
+Using #codeStream with "/home/grads/n/nahom.habtemariam/OpenFOAM/blastfoamfusion/validation/blastFoam/Sedov/Sedov_3D/dynamicCode/platforms/linux64GccDPInt32Opt/lib/libcodeStream_2f4160e67ede8beafac58d9ba2efa90baaab166d.so"
+Creating new library in "dynamicCode/_2f4160e67ede8beafac58d9ba2efa90baaab166d/platforms/linux64GccDPInt32Opt/lib/libcodeStream_2f4160e67ede8beafac58d9ba2efa90baaab166d.so"
+"/home/grads/n/nahom.habtemariam/OpenFOAM/OpenFOAM-9/etc/codeTemplates/dynamicCode/codeStreamTemplate.C" "/home/grads/n/nahom.habtemariam/OpenFOAM/blastfoamfusion/validation/blastFoam/Sedov/Sedov_3D/dynamicCode/_2f4160e67ede8beafac58d9ba2efa90baaab166d/codeStreamTemplate.C"
+Invoking "wmake -s libso /home/grads/n/nahom.habtemariam/OpenFOAM/blastfoamfusion/validation/blastFoam/Sedov/Sedov_3D/dynamicCode/_2f4160e67ede8beafac58d9ba2efa90baaab166d"
+wmake libso /home/grads/n/nahom.habtemariam/OpenFOAM/blastfoamfusion/validation/blastFoam/Sedov/Sedov_3D/dynamicCode/_2f4160e67ede8beafac58d9ba2efa90baaab166d
+    ln: ./lnInclude
+    wmkdep: codeStreamTemplate.C
+    Ctoo: codeStreamTemplate.C
+    ld: /home/grads/n/nahom.habtemariam/OpenFOAM/blastfoamfusion/validation/blastFoam/Sedov/Sedov_3D/dynamicCode/_2f4160e67ede8beafac58d9ba2efa90baaab166d/../platforms/linux64GccDPInt32Opt/lib/libcodeStream_2f4160e67ede8beafac58d9ba2efa90baaab166d.so
+codeStream : dictionary:"/home/grads/n/nahom.habtemariam/OpenFOAM/blastfoamfusion/validation/blastFoam/Sedov/Sedov_3D/system/blockMeshDict" master-only-reading:1
+Opening cached dictionary:"/home/grads/n/nahom.habtemariam/OpenFOAM/blastfoamfusion/validation/blastFoam/Sedov/Sedov_3D/dynamicCode/platforms/linux64GccDPInt32Opt/lib/libcodeStream_2f4160e67ede8beafac58d9ba2efa90baaab166d.so"
+codeStream : dictionary:"/home/grads/n/nahom.habtemariam/OpenFOAM/blastfoamfusion/validation/blastFoam/Sedov/Sedov_3D/system/blockMeshDict" master-only-reading:1
+Using #calcEntry at line 22 in file "/home/grads/n/nahom.habtemariam/OpenFOAM/blastfoamfusion/validation/blastFoam/Sedov/Sedov_3D/system/blockMeshDict"
+Using #codeStream with "/home/grads/n/nahom.habtemariam/OpenFOAM/blastfoamfusion/validation/blastFoam/Sedov/Sedov_3D/dynamicCode/platforms/linux64GccDPInt32Opt/lib/libcodeStream_1d060fc3d08a6610e29fb7df9ce89769fd09a0e0.so"
+Creating new library in "dynamicCode/_1d060fc3d08a6610e29fb7df9ce89769fd09a0e0/platforms/linux64GccDPInt32Opt/lib/libcodeStream_1d060fc3d08a6610e29fb7df9ce89769fd09a0e0.so"
+"/home/grads/n/nahom.habtemariam/OpenFOAM/OpenFOAM-9/etc/codeTemplates/dynamicCode/codeStreamTemplate.C" "/home/grads/n/nahom.habtemariam/OpenFOAM/blastfoamfusion/validation/blastFoam/Sedov/Sedov_3D/dynamicCode/_1d060fc3d08a6610e29fb7df9ce89769fd09a0e0/codeStreamTemplate.C"
+Invoking "wmake -s libso /home/grads/n/nahom.habtemariam/OpenFOAM/blastfoamfusion/validation/blastFoam/Sedov/Sedov_3D/dynamicCode/_1d060fc3d08a6610e29fb7df9ce89769fd09a0e0"
+wmake libso /home/grads/n/nahom.habtemariam/OpenFOAM/blastfoamfusion/validation/blastFoam/Sedov/Sedov_3D/dynamicCode/_1d060fc3d08a6610e29fb7df9ce89769fd09a0e0
+    ln: ./lnInclude
+    wmkdep: codeStreamTemplate.C
+    Ctoo: codeStreamTemplate.C
+    ld: /home/grads/n/nahom.habtemariam/OpenFOAM/blastfoamfusion/validation/blastFoam/Sedov/Sedov_3D/dynamicCode/_1d060fc3d08a6610e29fb7df9ce89769fd09a0e0/../platforms/linux64GccDPInt32Opt/lib/libcodeStream_1d060fc3d08a6610e29fb7df9ce89769fd09a0e0.so
+codeStream : dictionary:"/home/grads/n/nahom.habtemariam/OpenFOAM/blastfoamfusion/validation/blastFoam/Sedov/Sedov_3D/system/blockMeshDict" master-only-reading:1
+Opening cached dictionary:"/home/grads/n/nahom.habtemariam/OpenFOAM/blastfoamfusion/validation/blastFoam/Sedov/Sedov_3D/dynamicCode/platforms/linux64GccDPInt32Opt/lib/libcodeStream_1d060fc3d08a6610e29fb7df9ce89769fd09a0e0.so"
+codeStream : dictionary:"/home/grads/n/nahom.habtemariam/OpenFOAM/blastfoamfusion/validation/blastFoam/Sedov/Sedov_3D/system/blockMeshDict" master-only-reading:1
+Creating block edges
+No non-planar block faces defined
+Creating topology blocks
+Creating topology patches
+
+Creating block mesh topology
+--> FOAM Warning : 
+    From function Foam::polyMesh::polyMesh(const Foam::IOobject&, Foam::pointField&&, const cellShapeList&, const faceListList&, const wordList&, const Foam::PtrList<Foam::dictionary>&, const Foam::word&, const Foam::word&, bool)
+    in file meshes/polyMesh/polyMeshFromShapeMesh.C at line 873
+    Found 1 undefined faces in mesh; adding to default patch.
+
+Check topology
+
+	Basic statistics
+		Number of internal faces : 0
+		Number of boundary faces : 6
+		Number of defined boundary faces : 6
+		Number of undefined boundary faces : 0
+	Checking patch -> block consistency
+
+Creating block offsets
+Creating merge list .
+
+Creating polyMesh from blockMesh
+Creating patches
+Creating cells
+Creating points with scale 1
+    Block 0 cell size :
+        i : 0.00100015 .. 0.00100015
+        j : 0 3.49048e-05 0 3.49048e-05 
+        k : 0 3.49048e-05 0 3.49048e-05 
+
+Writing polyMesh
+----------------
+Mesh Information
+----------------
+  boundingBox: (0 -0.0087262 -0.0087262) (0.499924 0.0087262 0.0087262)
+  nPoints: 2001
+  nCells: 500
+  nFaces: 2500
+  nInternalFaces: 499
+----------------
+Patches
+----------------
+  patch 0 (start: 499 size: 500) name: wedge0
+  patch 1 (start: 999 size: 500) name: wedge1
+  patch 2 (start: 1499 size: 500) name: wedge2
+  patch 3 (start: 1999 size: 500) name: wedge3
+  patch 4 (start: 2499 size: 1) name: outlet
+  patch 5 (start: 2500 size: 0) name: defaultFaces
+
+End
+
