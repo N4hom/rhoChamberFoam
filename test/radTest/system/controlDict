@@ -16,19 +16,19 @@ FoamFile
 
 application     chamberFoam;
 
-startFrom       latestTime;
+startFrom       startTime;
 
 startTime       0;
 
 stopAt          endTime;
 
-endTime         1e-6;
+endTime         1.1e-8;
 
-deltaT          1e-9;
+deltaT          1e-11;
 
 writeControl    adjustable;
 
-writeInterval   1e-7;
+writeInterval   1e-9;
 
 purgeWrite      0;
 
@@ -44,7 +44,7 @@ timePrecision   6;
 
 runTimeModifiable true;
 
-adjustTimeStep  yes;
+adjustTimeStep  no;
 
 maxCo           0.01;
 

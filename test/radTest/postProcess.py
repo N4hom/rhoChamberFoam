@@ -83,7 +83,7 @@ T_1em6 = radiationCase_1em6[:, 2]
 plt.plot(x[:-3]/np.sqrt(3) / absorptivity, u_1, 'x' , label='u Analytical @ tau = 1')
 # plt.plot(x/np.sqrt(3) / absorptivity, u_100, 'x' , label='u Analytical @ tau = 100')
 # plt.plot(x[:-3]/np.sqrt(3) / absorptivity, u_100, 'x' , label='u Analytical tau = 100')
-plt.plot(z_1em8 * 10 ,  G_1em8/c , label='u Numerical @ tau = 1')
+plt.plot(z_1em8 * 10 ,  G_1em8 , label='u Numerical @ tau = 1')
 # plt.plot(z_1em6 * 10 ,  G_1em6/c , label='u Numerical @ tau = 100')
 plt.xlabel('Position(m)')
 plt.ylabel('Radiation intensity (J/m3)')
