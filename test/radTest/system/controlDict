@@ -16,15 +16,15 @@ FoamFile
 
 application     chamberFoam;
 
-startFrom       startTime;
+startFrom       latestTime;
 
-startTime       1.1e-8;
+startTime       0;
 
 stopAt          endTime;
 
-endTime         1.1e-6;
+endTime         1e-6;
 
-deltaT          1e-13;
+deltaT          1e-9;
 
 writeControl    adjustable;
 
@@ -49,6 +49,9 @@ adjustTimeStep  yes;
 maxCo           0.01;
 
 maxDeltaT       1;
+
+hydrodynamics false;
+
 
 
 // ************************************************************************* //

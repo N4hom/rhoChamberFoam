@@ -1,0 +1,50 @@
+/*---------------------------------------------------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  9
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+Build  : 9-00b327d198db
+Exec   : setFields
+Date   : Jan 11 2024
+Time   : 12:21:03
+Host   : "nuen-mj0jdqvm.engr.tamu.edu"
+PID    : 408072
+I/O    : uncollated
+Case   : /home/grads/n/nahom.habtemariam/OpenFOAM/blastfoamfusion/validation/blastFoam/Sedov/Sedov_3D
+nProcs : 1
+sigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 10)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Create mesh for time = 0
+
+Reading "setFieldsDict"
+
+Using #calcEntry at line 36 in file "/home/grads/n/nahom.habtemariam/OpenFOAM/blastfoamfusion/validation/blastFoam/Sedov/Sedov_3D/system/setFieldsDict"
+Using #codeStream with "/home/grads/n/nahom.habtemariam/OpenFOAM/blastfoamfusion/validation/blastFoam/Sedov/Sedov_3D/dynamicCode/platforms/linux64GccDPInt32Opt/lib/libcodeStream_3b50a5162b9043b8df1e3dbdb90b259e15a88efd.so"
+Creating new library in "dynamicCode/_3b50a5162b9043b8df1e3dbdb90b259e15a88efd/platforms/linux64GccDPInt32Opt/lib/libcodeStream_3b50a5162b9043b8df1e3dbdb90b259e15a88efd.so"
+"/home/grads/n/nahom.habtemariam/OpenFOAM/OpenFOAM-9/etc/codeTemplates/dynamicCode/codeStreamTemplate.C" "/home/grads/n/nahom.habtemariam/OpenFOAM/blastfoamfusion/validation/blastFoam/Sedov/Sedov_3D/dynamicCode/_3b50a5162b9043b8df1e3dbdb90b259e15a88efd/codeStreamTemplate.C"
+Invoking "wmake -s libso /home/grads/n/nahom.habtemariam/OpenFOAM/blastfoamfusion/validation/blastFoam/Sedov/Sedov_3D/dynamicCode/_3b50a5162b9043b8df1e3dbdb90b259e15a88efd"
+wmake libso /home/grads/n/nahom.habtemariam/OpenFOAM/blastfoamfusion/validation/blastFoam/Sedov/Sedov_3D/dynamicCode/_3b50a5162b9043b8df1e3dbdb90b259e15a88efd
+    ln: ./lnInclude
+    wmkdep: codeStreamTemplate.C
+    Ctoo: codeStreamTemplate.C
+    ld: /home/grads/n/nahom.habtemariam/OpenFOAM/blastfoamfusion/validation/blastFoam/Sedov/Sedov_3D/dynamicCode/_3b50a5162b9043b8df1e3dbdb90b259e15a88efd/../platforms/linux64GccDPInt32Opt/lib/libcodeStream_3b50a5162b9043b8df1e3dbdb90b259e15a88efd.so
+codeStream : dictionary:"/home/grads/n/nahom.habtemariam/OpenFOAM/blastfoamfusion/validation/blastFoam/Sedov/Sedov_3D/system/setFieldsDict" master-only-reading:1
+Opening cached dictionary:"/home/grads/n/nahom.habtemariam/OpenFOAM/blastfoamfusion/validation/blastFoam/Sedov/Sedov_3D/dynamicCode/platforms/linux64GccDPInt32Opt/lib/libcodeStream_3b50a5162b9043b8df1e3dbdb90b259e15a88efd.so"
+codeStream : dictionary:"/home/grads/n/nahom.habtemariam/OpenFOAM/blastfoamfusion/validation/blastFoam/Sedov/Sedov_3D/system/setFieldsDict" master-only-reading:1
+Setting field default values
+    Setting internal values of volScalarField rho
+    Setting internal values of volScalarField p
+
+Setting field region values
+    Adding cells with centre within sphere, with centre = (0 0 0) and radius = 0.005
+    Setting internal values of volScalarField p
+
+End
+

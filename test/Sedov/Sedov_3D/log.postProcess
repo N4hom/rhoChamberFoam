@@ -1,0 +1,46 @@
+/*---------------------------------------------------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  9
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+Build  : 9-00b327d198db
+Exec   : postProcess -func sampleDict -latestTime
+Date   : Jan 11 2024
+Time   : 12:22:18
+Host   : "nuen-mj0jdqvm.engr.tamu.edu"
+PID    : 408502
+I/O    : uncollated
+Case   : /home/grads/n/nahom.habtemariam/OpenFOAM/blastfoamfusion/validation/blastFoam/Sedov/Sedov_3D
+nProcs : 1
+sigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 10)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Create mesh for time = 0.05
+
+--> FOAM Warning : 
+    From function void Foam::particle::locate(const vector&, Foam::label, bool, Foam::string)
+    in file particle/particle.C at line 496
+    Particle initialised with a location outside of the mesh.
+--> FOAM Warning : 
+    From function void Foam::particle::locate(const vector&, Foam::label, bool, Foam::string)
+    in file particle/particle.C at line 496
+    Particle initialised with a location outside of the mesh.
+Reading set description:
+    Centerline
+
+Time = 0.05
+
+Reading fields:
+    volScalarFields: rho p
+    volVectorFields: U
+
+Executing functionObjects
+
+End
+
