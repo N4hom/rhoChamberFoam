@@ -1,7 +1,7 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
-|  \\    /   O peration     | Version:  2212                                  |
+|  \\    /   O peration     | Version:  2312                                  |
 |   \\  /    A nd           | Website:  www.openfoam.com                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
@@ -25,12 +25,12 @@ boundaryField
     leftWall
     {
         type            calculated;
-        value           uniform -7.7458e+07;
+        value           uniform -5.19104e+07;
     }
     rightWall
     {
         type            calculated;
-        value           uniform 2.50256e-08;
+        value           uniform 0.000452649;
     }
     empty
     {

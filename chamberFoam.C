@@ -90,21 +90,6 @@ int main(int argc, char *argv[])
     scalar CoNum = 0.0;
     scalar meanCoNum = 0.0;
 
-    /*IOdictionary thermoProperties
-    (
-        IOobject
-        (
-            "thermoPhysicalProperties",
-            runTime.constant(),
-            mesh,
-            IOobject::MUST_READ_IF_MODIFIED,
-            IOobject::NO_WRITE
-        )
-    );
-
-    dictionary& dict(thermoProperties);
-    scalarLookupTable2D TTable_(dict.subDict("thermodynamics"), "rho", "e", "T");*/
-
     Info<< "\nStarting time loop\n" << endl;
 
     while (runTime.run())
@@ -360,22 +345,24 @@ int main(int argc, char *argv[])
             radiation->correct();
 
             Info << "Correcting internal energy to account for radiation \n " << endl;
+            
             solve
             (
                 fvm::ddt(rho, e) 
-                //- fvc::ddt(rho, e) I don't know what fvc is supposed to do here
+                //- fvc::ddt(rho, e) 
                 - radiation->Sh(thermo, e)
               //- fvm::laplacian(turbulence->alphaEff(), e)
             );
 
             thermo.correctTemperature();
+            
+            if (hydrodynamics)
+            {
+                thermo.correctFromRhoE();
+                rhoE = rho*(e + 0.5*magSqr(U));    
+            }
         }
 
-        if (hydrodynamics)
-        {
-            thermo.correctFromRhoE();
-            rhoE = rho*(e + 0.5*magSqr(U));    
-        }
        
         /*if (!inviscid)
         {
@@ -388,14 +375,7 @@ int main(int argc, char *argv[])
             rhoE = rho*(e + 0.5*magSqr(U));
         }*/
 
-        //Info << "thermo quantities after correction \n " << endl;
-
-        // Info << "p " << p << endl;
-        // Info << "rho " << rho << endl;
-        // Info << "T " << T << endl;
-        // Info << "c " << c << endl;
-
-
+        
         // Pressure correction of internal field and boundary is performed in correctFromRhoE()
 
         /*p.ref() =
