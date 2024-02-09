@@ -80,11 +80,11 @@ int main(int argc, char *argv[])
 
     const dimensionedScalar v_zero(dimVolume/dimTime, Zero);
 
-    bool hydrodynamics = runTime.controlDict().getOrDefault<bool>
-        (
-            "hydrodynamics",
-            true
-        );
+    // bool hydrodynamics = runTime.controlDict().getOrDefault<bool>
+    //     (
+    //         "hydrodynamics",
+    //         true
+    //     );
 
     // Courant numbers used to adjust the time-step
     scalar CoNum = 0.0;
@@ -254,115 +254,115 @@ int main(int argc, char *argv[])
 
         // Info << " -------------------------------------------------------------------- " << endl;
 
-        if (hydrodynamics)
-        {
+        // if (hydrodynamics)
+        // {
             
 
-            // --- Solve density
+        // --- Solve density
 
-            Info << "Solving for density \n" << endl;
-            solve(fvm::ddt(rho) + fvc::div(phi));
-            rho.correctBoundaryConditions();
-
-
-            // --- Solve momentum
-            Info << "Solving for momentum \n " << endl;
-            solve(fvm::ddt(rhoU) + fvc::div(phiUp));
-
-            U.ref() =
-                rhoU()
-               /rho();
-            U.correctBoundaryConditions();
-            rhoU.boundaryFieldRef() == rho.boundaryField()*U.boundaryField();
-
-            // Turbulence models depend on the thermophysicalModels library.
-            // Turned off for now.
-
-            // if (!inviscid)
-            // {
-            //     solve
-            //     (
-            //         fvm::ddt(rho, U) - fvc::ddt(rho, U)
-            //       - fvm::laplacian(muEff, U)
-            //       - fvc::div(tauMC)
-            //     );
-            //     rhoU = rho*U;
-            // }
-
-            // --- Solve energy
-            // surfaceScalarField sigmaDotU
-            // (
-            //     "sigmaDotU",
-            //     (
-            //         fvc::interpolate(muEff)*mesh.magSf()*fvc::snGrad(U)
-            //       + fvc::dotInterpolate(mesh.Sf(), tauMC)
-            //     )
-            //   & (a_pos*U_pos + a_neg*U_neg)
-            // );
+        Info << "Solving for density \n" << endl;
+        solve(fvm::ddt(rho) + fvc::div(phi));
+        rho.correctBoundaryConditions();
 
 
+        // --- Solve momentum
+        Info << "Solving for momentum \n " << endl;
+        solve(fvm::ddt(rhoU) + fvc::div(phiUp));
 
-            // For some reason the radiation source cannot be added here because there would be an incompatibility
-            // This is the error that I get (for future reference):
+        U.ref() =
+            rhoU()
+           /rho();
+        U.correctBoundaryConditions();
+        rhoU.boundaryFieldRef() == rho.boundaryField()*U.boundaryField();
 
-            // Incompatible fields for operation
-            // [rhoE] - [thermo:e]
+        // Turbulence models depend on the thermophysicalModels library.
+        // Turned off for now.
 
-            Info << "Solving for energy " << endl;
-            solve
+        // if (!inviscid)
+        // {
+        //     solve
+        //     (
+        //         fvm::ddt(rho, U) - fvc::ddt(rho, U)
+        //       - fvm::laplacian(muEff, U)
+        //       - fvc::div(tauMC)
+        //     );
+        //     rhoU = rho*U;
+        // }
+
+        // --- Solve energy
+        // surfaceScalarField sigmaDotU
+        // (
+        //     "sigmaDotU",
+        //     (
+        //         fvc::interpolate(muEff)*mesh.magSf()*fvc::snGrad(U)
+        //       + fvc::dotInterpolate(mesh.Sf(), tauMC)
+        //     )
+        //   & (a_pos*U_pos + a_neg*U_neg)
+        // );
+
+
+
+        // For some reason the radiation source cannot be added here because there would be an incompatibility
+        // This is the error that I get (for future reference):
+
+        // Incompatible fields for operation
+        // [rhoE] - [thermo:e]
+
+        Info << "Solving for energy " << endl;
+        solve
+        (
+            fvm::ddt(rhoE)
+          + fvc::div(phiEp)
+          //- fvc::div(sigmaDotU)
+        );
+
+        e = rhoE/rho - 0.5*magSqr(U);
+
+        // Info << "--------------------Solution------------ " << endl;
+        // Info << "rho \n " << rho << endl;
+        // Info << "rhoU \n " << rhoU << endl;
+        // Info << "rhoE \n " << rhoE << endl;
+        // Info << "-----------------------------------------" << endl;
+
+        //e.correctBoundaryConditions();
+
+        Info << "Correcting thermo quantities " << endl;
+
+        // Calculate new temperature, pressure, thermophysical properties
+        thermo.correctFromRhoE();
+        rhoE.boundaryFieldRef() ==
+            rho.boundaryField()*
             (
-                fvm::ddt(rhoE)
-              + fvc::div(phiEp)
-              //- fvc::div(sigmaDotU)
+                e.boundaryField() + 0.5*magSqr(U.boundaryField())
             );
+        
 
-            e = rhoE/rho - 0.5*magSqr(U);
+        // if (radiation->radiation())
+        // {
+        //     Info << "Radiation is on \n" << endl;
 
-            // Info << "--------------------Solution------------ " << endl;
-            // Info << "rho \n " << rho << endl;
-            // Info << "rhoU \n " << rhoU << endl;
-            // Info << "rhoE \n " << rhoE << endl;
-            // Info << "-----------------------------------------" << endl;
+        //     Info << "Radiation correct \n " << endl;
+        //     radiation->correct();
 
-            //e.correctBoundaryConditions();
-
-            Info << "Correcting thermo quantities " << endl;
-
-            // Calculate new temperature, pressure, thermophysical properties
-            thermo.correctFromRhoE();
-            rhoE.boundaryFieldRef() ==
-                rho.boundaryField()*
-                (
-                    e.boundaryField() + 0.5*magSqr(U.boundaryField())
-                );
-        }
-
-        if (radiation->radiation())
-        {
-            Info << "Radiation is on \n" << endl;
-
-            Info << "Radiation correct \n " << endl;
-            radiation->correct();
-
-            Info << "Correcting internal energy to account for radiation \n " << endl;
+        //     Info << "Correcting internal energy to account for radiation \n " << endl;
             
-            solve
-            (
-                fvm::ddt(rho, e) 
-                //- fvc::ddt(rho, e) 
-                - radiation->Sh(thermo, e)
-              //- fvm::laplacian(turbulence->alphaEff(), e)
-            );
+        //     solve
+        //     (
+        //         fvm::ddt(rho, e) 
+        //         //- fvc::ddt(rho, e) 
+        //         - radiation->Sh(thermo, e)
+        //       //- fvm::laplacian(turbulence->alphaEff(), e)
+        //     );
 
-            thermo.correctTemperature();
+        //     thermo.correctTemperature();
             
-        }
+        
 
-        if (hydrodynamics)
-        {
-            thermo.correctFromRhoE();
-            rhoE = rho*(e + 0.5*magSqr(U));    
-        }
+        // if (hydrodynamics)
+        // {
+        //     thermo.correctFromRhoE();
+        //     rhoE = rho*(e + 0.5*magSqr(U));    
+        // }
        
         /*if (!inviscid)
         {
