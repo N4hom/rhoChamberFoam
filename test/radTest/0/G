@@ -23,7 +23,7 @@ boundaryField
     rightWall
     {
         type            fixedValue;
-        value            uniform 0;
+        value           uniform 0;
     }
     leftWall
     {

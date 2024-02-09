@@ -84,9 +84,9 @@ mixture
         eCoeffs
         {
             mod         ln;
-            n           55;
-            min         -50;
-            delta       1;
+            n           800;
+            min         -60;
+            delta       0.1;
             isReal      false;
         }
     }

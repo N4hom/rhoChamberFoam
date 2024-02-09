@@ -24,7 +24,8 @@ boundaryField
 {
     rightWall
     {
-        type            zeroGradient;
+        type            fixedValue;
+        value           uniform 1e-1;
     }
     leftWall
     {

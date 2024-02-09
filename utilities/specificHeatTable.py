@@ -5,7 +5,7 @@ M = 28.9
 
 R = R_/M
 
-alpha = 1e-15
+alpha = 1e-10
 
 def rho(R, p, T):
     return p / R / T
@@ -23,11 +23,12 @@ def T(alpha, rho, e):
 precision = 5
 
 
-eLog = np.arange(-50, 5 , 1)
+eLog = np.arange(-60, 20 , 0.1)
 
 Tlog = np.log(T(alpha , 0, np.exp(eLog)))
 
 
+print(', '.join(map(lambda x: f"{x:.{precision}f}", Tlog)))
 print(', '.join(map(lambda x: f"{x:.{precision}f}", Tlog)))
    
 print(np.exp(Tlog))

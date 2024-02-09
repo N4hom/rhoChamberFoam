@@ -3,9 +3,21 @@ cd "${0%/*}" || exit                                # Run from this directory
 . ${WM_PROJECT_DIR:?}/wmake/scripts/AllwmakeParseArguments
 #------------------------------------------------------------------------------
 
-(
-    wmake $targetType BCs \
- && wmake $targetType
-)
+cd src/tableReaders
+wmake 
+cd ../..
+
+cd src/newThermophysicalModels/mySpecie
+wmake
+cd ../../..
+
+cd src/newThermophysicalModels/myBasic
+wmake
+cd ../../..
+
+cd src/newThermophysicalModels/myRadiation
+wmake 
+cd ../../..
+
 
 #------------------------------------------------------------------------------
