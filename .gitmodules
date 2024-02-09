@@ -1,0 +1,3 @@
+[submodule "src/newThermophysicalModels"]
+    path = src/newThermophysicalModels
+    url = https://github.com/N4hom/newThermophysicalModels
