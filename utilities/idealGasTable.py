@@ -1,9 +1,12 @@
 import numpy as np
 
-R_ = 8314.0
-M = 28.9
+R_ = 8314.0   #J/K/kmol
+gamma = 1.67
+M = 4
 
-R = R_/M
+R = R_/M   #J/kg/K
+precision = 5
+
 
 def rho(R, p, T):
     return p / R / T
@@ -14,79 +17,35 @@ def e(R, p, T):
 def cSqr(R , p ,T):
     return np.sqrt(5/3 * R * T)
 
-scale = 'lin'
+def Cv(rho, e, R):
+    return 1.5*R
 
-# Set the desired precision
-precision = 3
+def p(rho, e):
+    return (gamma - 1) * rho * e
+
+def T(rho, e, R):
+    return e/Cv(e,rho,R)
 
 
-if scale == 'lin':
-    #pressure = np.linspace(np.exp(9.1), np.exp(11.52), num=10)
-    pressure = np.array([1e5, 100100, 100200, 100300])
-    print("Delta pressure ",pressure[1:] - pressure[:-1])
-    temperature = np.linspace(np.exp(5), np.exp(6), num=10)
-    print("Delta temperature ", temperature[1:] - temperature[:-1])
-    
+rhoLog = np.linspace(-3, 3, num=24)
 
-if scale == 'log':
-    pressureExp = np.linspace(9, 13, num=4)
-    print(pressureExp[1:] - pressureExp[:-1])
-    temperatureExp = np.linspace(5, 12, num=4)
-    print(temperatureExp[1:] - temperatureExp[:-1])
-    pressure = np.exp(pressureExp)
-    temperature = np.exp(temperatureExp)
+eLog = np.linspace(12, 15, 30)
+print(eLog[1:]-eLog[:-1])
+print(rhoLog[1:]-rhoLog[:-1])
 
 
 
-
-densityTable = np.zeros((len(pressure), len(temperature)))
-energyTable = np.zeros((len(pressure), len(temperature)))
-cSqrTable = np.zeros((len(pressure), len(temperature)))
-
-
-if scale == 'log':
-    for i in range(len(temperature)):
-        densityTable[i] = np.log(rho(R, pressure[i], temperature))
-        energyTable[i] = np.log(e(R, pressure[i], temperature))
-        cSqrTable[i] = np.log(cSqr(R , pressure[i] , temperature))
-
-if scale == 'lin':
-    for i in range(len(temperature)):
-        densityTable[i] = rho(R, pressure[i], temperature)
-        energyTable[i] = e(R, pressure[i], temperature)
-        cSqrTable[i] = cSqr(R , pressure[i] , temperature)
-    
-
-print("Pressure scale : ", pressure)
-print()
-print("Temperature scale : ", temperature)
-
-print("Density table coefficients:")
-for i in range(len(temperature)):
-    print(', '.join(map(lambda x: f"{x:.{precision}f}", densityTable[i])))
+print("temperature coefficients: ")
+for i in range(len(rhoLog)):
+    print(', '.join(map(lambda x: f"{x:.{precision}f}", np.log(T(10**(rhoLog[i]), np.exp(eLog), R)))))
 print()
 
-if scale == 'log':
-    print("Density table :")
-    for i in range(len(temperature)):
-        print(', '.join(map(lambda x: f"{x:.{precision}f}", np.exp(densityTable[i]))))
-    print()
-    print("Energy table :")
-    for i in range(len(temperature)):
-        print(', '.join(map(lambda x: f"{x:.{precision}f}", np.exp(energyTable[i]))))
-    print()
-    print("Speed of sound table: ")
-    for i in range(len(temperature)):
-        print(', '.join(map(lambda x: f"{x:.{precision}f}", np.exp(cSqrTable[i]))))
-
-print()
-print("Energy table coefficients:")
-for i in range(len(temperature)):
-    print(', '.join(map(lambda x: f"{x:.{precision}f}", energyTable[i])))
-
+print("Pressure coefficients: ")
+for i in range(len(rhoLog)):
+    print(', '.join(map(lambda x: f"{x:.{precision}f}", np.log(p(10**(rhoLog[i]), np.exp(eLog))))))
 print()
 
-print("Speed of sound table coefficients: ")
-for i in range(len(temperature)):
-    print(', '.join(map(lambda x: f"{x:.{precision}f}", cSqrTable[i])))
+print("Pressure coefficients: ")
+for i in range(len(rhoLog)):
+    print(', '.join(map(lambda x: f"{x:.{precision}f}", p(10**(rhoLog[i]), np.exp(eLog)))))
 print()

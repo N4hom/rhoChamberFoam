@@ -1,4 +1,4 @@
 SOURCE = \
-chamberFoam.C \
+rhoChamberFoam.C \
 
 # sources

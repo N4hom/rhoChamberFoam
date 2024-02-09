@@ -122,7 +122,6 @@ void Foam::functionObjects::formForce::calcForcesMoment()
     //- Calculate the force on each patch
     forAllConstIter(labelHashSet, patchSet_, iter)
     {
-        Info << "patchIndex " << patchIndex << endl;
         const label patchi = iter.key();
         const vectorField force(Sfb[patchi]*(p.boundaryField()[patchi] - pRef_));
        
@@ -133,11 +132,11 @@ void Foam::functionObjects::formForce::calcForcesMoment()
 
         scalar patchArea = gSum(mag(Sfb[patchi]));
         
-        Info << "totalForce "  << totalForce[0] << " " << totalForce[1] << "  " << totalForce[2]  << "N over " << patchArea << " m2" <<  endl;
+//        Info << "totalForce "  << totalForce[0] << " " << totalForce[1] << "  " << totalForce[2]  << "N over " << patchArea << " m2" <<  endl;
 //        Info << "sumForce "  << sumForce[0] << " " << sumForce[1] << "  " << sumForce[2]  << "N over " << patchArea << " m2" <<  endl;
-        Info << "before totalForces_[patchIndex] " << endl;
+//        Info << "before totalForces_[patchIndex] " << endl;
         totalForces_[patchIndex] = totalForce;
-        Info << "before patchIndex++ " << endl;
+//        Info << "before patchIndex++ " << endl;
 
         patchIndex++;
     }
