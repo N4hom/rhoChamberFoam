@@ -1,0 +1,81 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  | =========                 |                                                 |
+  | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+  |  \\    /   O peration     | Version:  2.3.0                                 |
+  |   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+  |    \\/     M anipulation  |                                                 |
+  \*---------------------------------------------------------------------------*/
+FoamFile
+{
+  version     2.0;
+  format      ascii;
+  class       dictionary;
+  location    "system";
+  object      controlDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+application     rhoChamberFoam;
+
+startFrom       startTime;
+
+startTime       0;//1.1e-4;//2.0e-5;//
+
+stopAt          writeNow;//
+
+endTime         100e-6;
+
+writeControl    adjustable;
+
+writeInterval   1e-5;
+
+writeFormat     ascii;
+
+writePrecision  6;
+
+writeCompression off;
+
+timeFormat      general;
+
+timePrecision   12;
+
+runTimeModifiable true;
+
+adjustTimeStep  yes;
+
+deltaT          1e-8;
+
+maxCo           0.5;
+
+
+functions
+{
+  force
+    {
+        type                formForce;
+        libs                ("libforces.so");
+
+        writeControl    writeTime;
+        restartOnRestart    false;
+
+        pName           p;
+        pRef            0;
+
+       patches         (slabs row_1 row_2 row_3 row_4 row_5 row_6 row_7 );
+      // Optional
+        region              region0;
+        enabled             true;
+        log                 true;
+        timeStart           0;
+        timeEnd             1000e-3;
+        executeControl      timeStep;
+        writeControl        timeStep;
+        writeInterval       1;
+    }
+
+
+    
+}
+// ************************************************************************* //
+
+

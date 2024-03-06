@@ -1,0 +1,56 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v1912                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      setExprFieldsDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+defaultFieldValues
+(
+    volVectorFieldValue U (0 0 0)
+);
+
+expressions
+(
+    U
+    {
+        field       U;
+        dimensions  [0 1 -1 0 0 0 0];
+
+        constants
+        {
+            centre (0 0 0.005);
+        }
+
+        
+
+        fieldMask
+        #{
+             (mag(pos() - $[(vector)constants.centre]) < 0.42)
+          
+
+        #};
+
+        expression
+        #{
+            //5000 * ( vector( mag(pos().x())  , mag(pos().y() ,0))  ) / ( (mag(pos() - $[(vector)constants.centre]))   )
+
+            5000/0.42 * ( vector( mag(pos().x())  , mag(pos().y()) , 0))  
+
+
+        #};
+    }
+);
+
+    
+
+// ************************************************************************* //

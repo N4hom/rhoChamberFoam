@@ -1,0 +1,98 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2312                                  |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    arch        "LSB;label=32;scalar=64";
+    class       polyBoundaryMesh;
+    location    "1e-08/polyMesh";
+    object      boundary;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+12
+(
+    row_1
+    {
+        type            patch;
+        nFaces          156;
+        startFace       16423;
+    }
+    row_2
+    {
+        type            patch;
+        nFaces          146;
+        startFace       16579;
+    }
+    row_3
+    {
+        type            patch;
+        nFaces          138;
+        startFace       16725;
+    }
+    row_4
+    {
+        type            patch;
+        nFaces          133;
+        startFace       16863;
+    }
+    row_5
+    {
+        type            patch;
+        nFaces          129;
+        startFace       16996;
+    }
+    row_6
+    {
+        type            patch;
+        nFaces          121;
+        startFace       17125;
+    }
+    row_7
+    {
+        type            patch;
+        nFaces          114;
+        startFace       17246;
+    }
+    symmetry_xz
+    {
+        type            symmetry;
+        inGroups        1(symmetry);
+        nFaces          103;
+        startFace       17360;
+    }
+    symmetry_yz
+    {
+        type            symmetry;
+        inGroups        1(symmetry);
+        nFaces          58;
+        startFace       17463;
+    }
+    wall
+    {
+        type            patch;
+        nFaces          63;
+        startFace       17521;
+    }
+    slabs
+    {
+        type            patch;
+        nFaces          98;
+        startFace       17584;
+    }
+    topBottom
+    {
+        type            empty;
+        inGroups        1(empty);
+        nFaces          20228;
+        startFace       17682;
+    }
+)
+
+// ************************************************************************* //
