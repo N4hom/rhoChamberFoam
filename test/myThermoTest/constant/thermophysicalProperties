@@ -29,99 +29,19 @@ mixture
 {
     mySpecie
     {
-        molWeight       28.96;
+        molWeight       7.;
     }
     
-    equationOfState
-    {
-        rhoCoeffs   // Quantity to be evaluated
-        {
-            file       "constant/rho.csv";
-            mod         none;
-            delim       ",";
-            isReal      false;
-            flipTable   false;
-        }
-
-        pCoeffs
-        {
-            mod         none;
-            n           10;
-            min         8955.29270348;
-            delta       10194.96324039;
-            isReal      false;
-        }
-        TCoeffs
-        {
-            mod         none;
-
-            n           10;
-            min         148.4131591;
-            delta       28.33507049;
-            isReal      false;
-        }
-    }
-
     thermodynamics
     {
-        Cv   717.7;
-        Hf   0.0;
-        Tref   0.0;
+        Cv              1781.5;
+        Cp              2969.76;
 
-        eCoeffs
-        {
-            file       "constant/e.csv";
-            mod         none;
-            delim       ",";
-            isReal      false;
-            flipTable   false;
-        }
-
-        CvCoeffs
-        {
-            file       "constant/Cv.csv";
-            mod         none;
-            delim       ",";
-            isReal      false;
-            flipTable   false;
-        }
-
-        CpCoeffs
-        {
-            file       "constant/Cp.csv";
-            mod         none;
-            delim       ",";
-            isReal      false;
-            flipTable   false;
-        }
-
-        cSqrCoeffs
-        {
-            file       "constant/cSqr.csv";
-            mod         none;
-            delim       ",";
-            isReal      false;
-            flipTable   false;
-        }
-
-        pCoeffs
-        {
-            mod         none;
-            n           10;
-            min         8955.29270348;
-            delta       10194.96324039;
-            isReal      false;
-        }
-        TCoeffs
-        {
-            mod         none;
-
-            n           10;
-            min         148.4131591;
-            delta       28.33507049;
-            isReal      false;
-        }
+        Hf              0;
+        Tref            0;
     }
+    
+    
     transport
     {
         mu  0;   

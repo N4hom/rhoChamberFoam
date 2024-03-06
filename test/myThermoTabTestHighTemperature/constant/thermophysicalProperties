@@ -1,0 +1,102 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2212                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      thermophysicalProperties;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+thermoType
+{
+    type            myHeRhoThermo;
+    mixture         myPureMixture;
+    transport       const;
+    thermo          eTabulated;
+    equationOfState tabulatedEOS;
+    specie          mySpecie;
+    energy          tabulatedInternalEnergy;
+}
+
+mixture
+{
+    mySpecie
+    {
+        molWeight       28.96;
+    }
+    
+    equationOfState
+    {
+        pCoeffs
+        {
+            file       "constant/p.csv";
+            mod         ln;
+            delim       ";";
+            isReal      false;
+            flipTable   false;
+        }
+
+        rhoCoeffs
+        {
+            mod         log10;
+
+            n           7;
+            delta       1.0;
+            min         -3.0;
+            isReal      false;
+        }
+        eCoeffs
+        {
+            mod         ln;
+
+            n           40;
+            min         11.8748;
+            delta       1.0;
+            isReal      false;
+        }
+    }
+    thermodynamics
+    {
+        TCoeffs
+        {
+            file        "constant/T.csv";
+            mod          ln;
+            delim       ";";
+            isReal      false;
+            flipTable   false;
+        }
+
+        rhoCoeffs
+        {
+            mod         log10;
+            n           7;
+            delta       1.0;
+            min         -3.0;
+            isReal      false;
+        }
+        eCoeffs
+        {
+            mod         ln;
+            n           40;
+            min         11.8748;
+            delta       0.1;
+            isReal      false;
+        }
+    }
+    
+    transport
+    {
+        mu  0;   
+        Pr  1;
+    }
+}
+
+
+// ************************************************************************* //

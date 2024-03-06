@@ -142,6 +142,9 @@ Foam::lookupTable2D<Type>::lookupTable2D
     weights_(0)
 {
     read(dict, xName, yName, name, canRead);
+    Info << "x " << xModValues_;
+    Info << "y " << yModValues_;
+    Info << "data_ " << data_ << endl;
 }
 
 
@@ -189,6 +192,10 @@ Foam::lookupTable2D<Type>::lookupTable2D
         yInterpolationScheme,
         isReal
     );
+
+    Info << "x " << x << endl;
+    Info << "y " << y << endl;
+    Info << "data_ " << data_ << endl;
 }
 
 // * * * * * * * * * * * * * * * * Destructor  * * * * * * * * * * * * * * * //
@@ -451,13 +458,16 @@ void Foam::lookupTable2D<Type>::updateIndex
 template<class Type>
 void Foam::lookupTable2D<Type>::update(const scalar x, const scalar y) const
 {
+    
     // Modify x and y values that are being accessed
     scalar xMod(modX_()(x));
     scalar yMod(modY_()(y));
 
+    
     // Find indexes associated with the given x and y 
     ij_.x() = xIndexing_->findIndex(xMod);
     ij_.y() = yIndexing_->findIndex(yMod);
+
 
     xInterpolator_->updateWeights(xMod, ij_[0], is_, wxs_);
     yInterpolator_->updateWeights(yMod, ij_[1], js_, wys_);

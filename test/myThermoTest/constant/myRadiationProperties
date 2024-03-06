@@ -16,7 +16,7 @@ FoamFile
 
 radiation       off;
 
-myRadiationModel  myNone;
+myRadiationModel  none;
 
 
 

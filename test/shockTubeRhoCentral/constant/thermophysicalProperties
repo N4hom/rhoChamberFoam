@@ -27,17 +27,18 @@ thermoType
 
 mixture
 {
-    specie
+     specie
     {
-        molWeight       28.96;
+        molWeight       7.;
     }
+    
     thermodynamics
     {
-        Cp              1004.5;
-        Cv              705.0;
+        Cv              1781.5;
         Hf              0;
         Tref            0;
     }
+
     transport
     {
         mu              0;

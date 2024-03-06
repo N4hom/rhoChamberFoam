@@ -2,10 +2,10 @@ import numpy as np
 
 R_ = 8314.0   #J/K/kmol
 gamma = 1.67
-M = 4
+M = 7.2947
 
 R = R_/M   #J/kg/K
-precision = 5
+precision = 9
 
 
 def rho(R, p, T):
@@ -27,9 +27,9 @@ def T(rho, e, R):
     return e/Cv(e,rho,R)
 
 
-rhoLog = np.linspace(-3, 3, num=24)
+rhoLog = np.linspace(-5, 3, num=50)
 
-eLog = np.linspace(12, 15, 30)
+eLog = np.linspace(12, 23, 50)
 print(eLog[1:]-eLog[:-1])
 print(rhoLog[1:]-rhoLog[:-1])
 
@@ -37,15 +37,20 @@ print(rhoLog[1:]-rhoLog[:-1])
 
 print("temperature coefficients: ")
 for i in range(len(rhoLog)):
-    print(', '.join(map(lambda x: f"{x:.{precision}f}", np.log(T(10**(rhoLog[i]), np.exp(eLog), R)))))
+    print(';'.join(map(lambda x: f"{x:.{precision}f}", np.log(T(10**(rhoLog[i]), np.exp(eLog), R)))))
 print()
 
 print("Pressure coefficients: ")
 for i in range(len(rhoLog)):
-    print(', '.join(map(lambda x: f"{x:.{precision}f}", np.log(p(10**(rhoLog[i]), np.exp(eLog))))))
+    print(';'.join(map(lambda x: f"{x:.{precision}f}", np.log(p(10**(rhoLog[i]), np.exp(eLog))))))
 print()
 
-print("Pressure coefficients: ")
+print("Pressure values: ")
 for i in range(len(rhoLog)):
-    print(', '.join(map(lambda x: f"{x:.{precision}f}", p(10**(rhoLog[i]), np.exp(eLog)))))
+    print(';'.join(map(lambda x: f"{x:.{precision}f}", p(10**(rhoLog[i]), np.exp(eLog)))))
+print()
+
+print("Temperature values: ")
+for i in range(len(rhoLog)):
+    print(';'.join(map(lambda x: f"{x:.{precision}f}", T(10**(rhoLog[i]), np.exp(eLog), R))))
 print()

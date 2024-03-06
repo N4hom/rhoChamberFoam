@@ -82,10 +82,13 @@ Foam::labelList Foam::lookupTable2D<Foam::scalar>::boundj
     }
 
     DynamicList<label> Js(data_[i].size());
+    Info << "Js "<< Js << endl;
     for (j = 0; j < data_[i].size(); j++)
     {
         if (f > data_[i][j] && f < data_[i+1][j])
         {
+            Info << "data[i][j] " << data_[i][j] << endl;
+            Info << "f " << f << endl;
             Js.append(j);
         }
     }
@@ -116,10 +119,16 @@ Foam::scalar Foam::lookupTable2D<Foam::scalar>::reverseLookupX
     const scalar y
 ) const
 {
-    ////Info << "fin " <<  fin << endl;
-    ////Info << "y " <<  y << endl;
+    // Info << "fin " <<  fin << endl;
+    // Info << "y " <<  y << endl;
+    
+    // Converting the f value
     scalar f(mod_()(fin));
+
+    // Looking for the index associated to y
     ij_.y() = yIndexing_->findIndex(modY_()(y));
+
+    //Info << "ij_.y() " << ij_.y() << endl;
     labelList Is(boundi(f));
 
     const label j = ij_.y();
@@ -184,10 +193,9 @@ Foam::scalar Foam::lookupTable2D<Foam::scalar>::reverseLookupY
     const scalar x
 ) const
 {
-    ////Info << "reverseLookupY " << endl;
 
-    ////Info << "x = " << x << endl;
-    ////Info << "fin = " << fin << endl;
+    Info << "x = " << x << endl;
+    Info << "fin = " << fin << endl;
     scalar f(mod_()(fin));
     ////Info << "fmod = " << f << endl;
 
@@ -195,13 +203,15 @@ Foam::scalar Foam::lookupTable2D<Foam::scalar>::reverseLookupY
     ////Info << "fin " << fin << endl;
 
     ij_.x() = xIndexing_->findIndex(modX_()(x));
-    ////Info << "x index associated with x = " << x << ": " << ij_.x() << endl;
+
+    Info << "x index associated with x = " << x << ": " << ij_.x() << endl;
+
     labelList Js(boundj(f));
 
-    ////Info << "labelList Js that bounds fmod " << Js << endl;
+    Info << "labelList Js that bounds fmod " << Js << endl;
 
     const label i = ij_.x();
-    ////Info << "label i " << i << endl;
+    Info << "label i " << i << endl;
 
     ////Info << "i " << i << endl;
     label& j = ij_.y();
@@ -219,7 +229,7 @@ Foam::scalar Foam::lookupTable2D<Foam::scalar>::reverseLookupY
     
     ////Info << "yModValues_ " << yModValues_ << endl;
     
-    ////Info << "fx " << fx << endl;
+    Info << "fx " << fx << endl;
 
 
     ////Info << "fx " << fx << endl;
@@ -227,25 +237,30 @@ Foam::scalar Foam::lookupTable2D<Foam::scalar>::reverseLookupY
 
     if (Js.size() == 1)
     {
-      //  ////Info << "Jd.size() == 1 " << endl;
+        Info << "i = " << i << " j = " << j << endl;
         j = Js[0];
         const scalar mm(data_[i][j]);
         const scalar pm(data_[i+1][j]);
         const scalar mp(data_[i][j+1]);
         const scalar pp(data_[i+1][j+1]);
-        
+
+        Info << "mm " << mm << endl;
+        Info << "pm " << pm << endl;
+        Info << "mp " << mp << endl;
+        Info << "pp " << pp << endl;
+
         // fy is used to interpolate the y values of the table (e.g. T if f = f(p,T))
-        ////Info << "fy " << fy << endl;
+        Info << "fy " << fy << endl;
         fy =
             (f + fx*(mm  - pm) - mm)
            /(fx*(mm - pm - mp + pp) - mm + mp);
-        ////Info << "fy " << fy << endl;
+        Info << "fy " << fy << endl;
 
         // getValue gives the y value at which the function f(x,y) will be evaluated
-        ////Info << getValue(j, fy, yModValues_) << endl;
+        Info << getValue(j, fy, yModValues_) << endl;
 
         // the function inv essentially performs the inverse operation defined by the modifier (e.g. exp(getValue) if the modifier is ln) 
-        ////Info << modY_->inv(getValue(j, fy, yModValues_)) << endl;
+        Info << modY_->inv(getValue(j, fy, yModValues_)) << endl;
 
         return modY_->inv(getValue(j, fy, yModValues_));
     }
@@ -279,7 +294,7 @@ Foam::scalar Foam::lookupTable2D<Foam::scalar>::reverseLookupY
     }
     j = findMin(errors);
 
-    ////Info << "yTrys[j] " << yTrys << endl;
+    Info << "yTrys[j] " << yTrys << endl;
 
     return yTrys[j];
 }

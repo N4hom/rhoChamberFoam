@@ -16,23 +16,41 @@ FoamFile
 
 defaultFieldValues
 (
+    volScalarFieldValue rho 1e-3
+    volScalarFieldValue T  1000
+    volScalarFieldValue p 1187.714
     volVectorFieldValue U (0 0 0)
-    volScalarFieldValue T 300
-    volScalarFieldValue p 100000
-    volScalarFieldValue rho 1.161023914
 );
 
 regions
 (
+   boxToCell
+    {
+        box (0 -1 -1) (5 1 1);
+        fieldValues
+        (
+            volScalarFieldValue rho 6.2247267
+        );
+    }
+
     boxToCell
     {
         box (0 -1 -1) (5 1 1);
         fieldValues
         (
-            volScalarFieldValue p 10000
-            volScalarFieldValue rho 0.1161023914
+            volScalarFieldValue T 277932.9748
         );
     }
+
+    boxToCell
+    {
+        box (0 -1 -1) (5 1 1);
+        fieldValues
+        (
+            volScalarFieldValue p 0.7400895532e9
+        );
+    }
+  
 );
 
 
