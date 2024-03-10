@@ -48,7 +48,7 @@ Description
 #include "fvcSmooth.H"
 #include "lookupTables2D.H"
 #include "myRadiationModel.H"
-
+#include "fluxScheme.H"
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 int main(int argc, char *argv[])
@@ -76,15 +76,9 @@ int main(int argc, char *argv[])
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-    #include "readFluxScheme.H"
+    //#include "readFluxScheme.H"
 
     const dimensionedScalar v_zero(dimVolume/dimTime, Zero);
-
-    // bool hydrodynamics = runTime.controlDict().getOrDefault<bool>
-    //     (
-    //         "hydrodynamics",
-    //         true
-    //     );
 
     // Courant numbers used to adjust the time-step
     scalar CoNum = 0.0;
@@ -181,11 +175,7 @@ int main(int argc, char *argv[])
 
         surfaceScalarField aSf("aSf", am*a_pos);
 
-        if (fluxScheme == "Tadmor")
-        {
-            aSf = -0.5*amaxSf;
-            a_pos = 0.5;
-        }
+        
 
         surfaceScalarField a_neg("a_neg", 1.0 - a_pos);
 
@@ -210,30 +200,35 @@ int main(int argc, char *argv[])
 
         Info<< "Time = " << runTime.timeName() << nl << endl;
 
-        phi = aphiv_pos*rho_pos + aphiv_neg*rho_neg;
 
-        surfaceVectorField phiU(aphiv_pos*rhoU_pos + aphiv_neg*rhoU_neg);
+        //---------------- Update fluxes ------------------------------
+
+        //phi = aphiv_pos*rho_pos + aphiv_neg*rho_neg;
+
+        //surfaceVectorField phiU(aphiv_pos*rhoU_pos + aphiv_neg*rhoU_neg);
         // Note: reassembled orientation from the pos and neg parts so becomes
         // oriented
-        phiU.setOriented(true);
+        //phiU.setOriented(true);
 
-        surfaceVectorField phiUp(phiU + (a_pos*p_pos + a_neg*p_neg)*mesh.Sf());
+        //surfaceVectorField phiUp(phiU + (a_pos*p_pos + a_neg*p_neg)*mesh.Sf());
 
-        surfaceScalarField phiEp
-        (
-            "phiEp",
-            aphiv_pos*(rho_pos*(e_pos + 0.5*magSqr(U_pos)) + p_pos)
-          + aphiv_neg*(rho_neg*(e_neg + 0.5*magSqr(U_neg)) + p_neg)
-          + aSf*p_pos - aSf*p_neg
-        );
+        // surfaceScalarField phiEp
+        // (
+        //     "phiEp",
+        //     aphiv_pos*(rho_pos*(e_pos + 0.5*magSqr(U_pos)) + p_pos)
+        //   + aphiv_neg*(rho_neg*(e_neg + 0.5*magSqr(U_neg)) + p_neg)
+        //   + aSf*p_pos - aSf*p_neg
+        // );
+
+        //----------------------------------------------------------------
 
         // Make flux for pressure-work absolute
-        if (mesh.moving())
-        {
-            surfaceScalarField meshPhi(mesh.phi());
-            meshPhi.setOriented(false);
-            phiEp += meshPhi*(a_pos*p_pos + a_neg*p_neg);
-        }
+        // if (mesh.moving())
+        // {
+        //     surfaceScalarField meshPhi(mesh.phi());
+        //     meshPhi.setOriented(false);
+        //     phiEp += meshPhi*(a_pos*p_pos + a_neg*p_neg);
+        // }
 
         //volScalarField muEff("muEff", turbulence->muEff());
         //volTensorField tauMC("tauMC", muEff*dev2(Foam::T(fvc::grad(U))));
@@ -257,11 +252,13 @@ int main(int argc, char *argv[])
         // if (hydrodynamics)
         // {
             
+        //- new update fluxes
 
+        fluxSchemeFields->update(rho,U,e,p,c,phi,phiRhop,phiUp,phiEp);
         // --- Solve density
 
         Info << "Solving for density \n" << endl;
-        solve(fvm::ddt(rho) + fvc::div(phi));
+        solve(fvm::ddt(rho) + fvc::div(phiRhop));
         rho.correctBoundaryConditions();
 
 
@@ -330,6 +327,7 @@ int main(int argc, char *argv[])
 
         // Calculate new temperature, pressure, thermophysical properties
         thermo.correctFromRhoE();
+        //rhoE = rho*(e + 0.5*magSqr(U));    
         rhoE.boundaryFieldRef() ==
             rho.boundaryField()*
             (

@@ -10,7 +10,8 @@ EXE_INC = \
     -I$/src/tableReaders/lnInclude \
     -I$/src/newThermophysicalModels/myBasic/lnInclude \
     -I$/src/newThermophysicalModels/mySpecie/lnInclude \
-    -I$/src/newThermophysicalModels/myRadiation/lnInclude 
+    -I$/src/newThermophysicalModels/myRadiation/lnInclude \
+    -I$/src/fluxSchemes/lnInclude
 
 EXE_LIBS = \
     -lfiniteVolume \
@@ -24,7 +25,8 @@ EXE_LIBS = \
     -ltopoChangerFvMesh \
     -L$(FOAM_USER_LIBBIN) -lmyFluidThermophysicalModels \
     -L$(FOAM_USER_LIBBIN) -lmySpecie \
-    -L$(FOAM_USER_LIBBIN) -lmyRadiationModels /* \
+    -L$(FOAM_USER_LIBBIN) -lmyRadiationModels \
+    -L$(FOAM_USER_LIBBIN) -lfluxSchemes/* \
     -L$(FOAM_USER_LIBBIN) -lTableReaders\*/
 
 

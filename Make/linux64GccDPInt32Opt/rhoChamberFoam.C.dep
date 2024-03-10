@@ -890,6 +890,8 @@ src/tableReaders/lnInclude/tableReaderTemplates.C \
 src/tableReaders/lnInclude/lookupTable2DTemplates.C \
 src/newThermophysicalModels/myRadiation/lnInclude/myRadiationModel.H \
 src/newThermophysicalModels/myRadiation/lnInclude/absorptionEmissionModel.H \
+src/fluxSchemes/lnInclude/fluxScheme.H \
+src/fluxSchemes/lnInclude/fluxSchemeTmp.C \
 $(WM_PROJECT_DIR)/src/OpenFOAM/lnInclude/postProcess.H \
 $(WM_PROJECT_DIR)/src/OpenFOAM/lnInclude/addRegionOption.H \
 $(WM_PROJECT_DIR)/src/OpenFOAM/lnInclude/addFunctionObjectOptions.H \
@@ -906,7 +908,6 @@ $(WM_PROJECT_DIR)/src/finiteVolume/lnInclude/createRDeltaT.H \
 src/newThermophysicalModels/myRadiation/lnInclude/createRadiationModel.H \
 createFieldRefs.H \
 $(WM_PROJECT_DIR)/src/finiteVolume/lnInclude/createTimeControls.H \
-readFluxScheme.H \
 $(WM_PROJECT_DIR)/src/finiteVolume/lnInclude/readTimeControls.H \
 $(WM_PROJECT_DIR)/src/finiteVolume/lnInclude/setDeltaT.H \
 centralCourantNo.H \

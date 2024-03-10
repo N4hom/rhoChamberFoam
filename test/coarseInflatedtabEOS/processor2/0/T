@@ -1,0 +1,96 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2312                                  |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    arch        "LSB;label=32;scalar=64";
+    class       volScalarField;
+    location    "0";
+    object      T;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 0 0 1 0 0 0];
+
+internalField   uniform 2000;
+
+boundaryField
+{
+    row_1
+    {
+        type            zeroGradient;
+    }
+    row_2
+    {
+        type            zeroGradient;
+    }
+    row_3
+    {
+        type            zeroGradient;
+    }
+    row_4
+    {
+        type            zeroGradient;
+    }
+    row_5
+    {
+        type            zeroGradient;
+    }
+    row_6
+    {
+        type            zeroGradient;
+    }
+    row_7
+    {
+        type            zeroGradient;
+    }
+    symmetry_xz
+    {
+        type            symmetry;
+    }
+    symmetry_yz
+    {
+        type            symmetry;
+    }
+    wall
+    {
+        type            zeroGradient;
+    }
+    slabs
+    {
+        type            zeroGradient;
+    }
+    topBottom
+    {
+        type            empty;
+    }
+    procBoundary2to1
+    {
+        type            processor;
+        value           uniform 2000;
+    }
+    procBoundary2to3
+    {
+        type            processor;
+        value           uniform 2000;
+    }
+    procBoundary2to6
+    {
+        type            processor;
+        value           uniform 2000;
+    }
+    procBoundary2to7
+    {
+        type            processor;
+        value           uniform 2000;
+    }
+}
+
+
+// ************************************************************************* //

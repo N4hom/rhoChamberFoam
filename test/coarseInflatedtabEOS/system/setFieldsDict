@@ -20,9 +20,9 @@ fields (T rho p u);
 
 defaultFieldValues
 (
-    volScalarFieldValue rho 1e-4
-    volScalarFieldValue T  1000
-    volScalarFieldValue p 61.0
+    volScalarFieldValue rho 1e-1
+    volScalarFieldValue T  500
+    volScalarFieldValue p 3176.5
     volVectorFieldValue U (0 0 0)
 );
 

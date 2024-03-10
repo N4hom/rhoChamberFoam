@@ -21,13 +21,13 @@ startFrom       startTime;
 
 startTime       0;//1.1e-4;//2.0e-5;//
 
-stopAt          writeNow;//
+stopAt          endTime;//
 
 endTime         100e-6;
 
 writeControl    adjustable;
 
-writeInterval   1e-5;
+writeInterval   1e-6;
 
 writeFormat     ascii;
 
@@ -43,7 +43,7 @@ runTimeModifiable true;
 
 adjustTimeStep  yes;
 
-deltaT          1e-8;
+deltaT          1e-10;
 
 maxCo           0.5;
 

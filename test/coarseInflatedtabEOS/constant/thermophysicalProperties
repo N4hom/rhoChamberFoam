@@ -19,79 +19,28 @@ thermoType
     type            myHeRhoThermo;
     mixture         myPureMixture;
     transport       const;
-    thermo          eTabulated;
-    equationOfState tabulatedEOS;
+    thermo          eConst;
+    equationOfState myPerfectGas;
     specie          mySpecie;
-    energy          tabulatedInternalEnergy;
+    energy          sensibleInternalEnergy;
 }
 
-// Assuming fully ionized flibe gas
 mixture
 {
     mySpecie
     {
-        molWeight       7.;
+        molWeight       7;
     }
     
+    
 
-    equationOfState
-    {
-        pCoeffs
-        {
-            file       "constant/pIonBlendedExt.csv";
-            mod         ln;
-            delim       ",";
-            isReal      false;
-            flipTable   false;
-        }
-
-        rhoCoeffs
-        {
-            mod         log10;
-
-            n           7;
-            min         -5;
-            delta       1;
-            isReal      false;
-        }
-        eCoeffs
-        {
-            mod         ln;
-
-            n           66;
-            min         16;
-            delta       0.1;
-            isReal      false;
-        }
-    }
     thermodynamics
     {
-        TCoeffs
-        {
-            file        "constant/TIonBlendedExt.csv";
-            mod          ln;
-            delim       ",";
-            isReal      false;
-            flipTable   false;
-        }
-         rhoCoeffs
-        {
-            mod         log10;
+        Cv   1781.6;
+        Hf   0.0;
+        Tref   0.0;
 
-            n           7;
-            min         -5;
-            delta       1;
-            isReal      false;
-        }
-        eCoeffs
-        {
-            mod         ln;
-
-            n           66;
-            min         16;
-            delta       0.1;
-            isReal      false;
-        }
+    
     }
     transport
     {

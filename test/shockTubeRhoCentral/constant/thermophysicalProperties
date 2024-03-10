@@ -29,12 +29,12 @@ mixture
 {
      specie
     {
-        molWeight       7.;
+        molWeight       28.9;
     }
     
     thermodynamics
     {
-        Cv              1781.5;
+        Cv             	719.2;
         Hf              0;
         Tref            0;
     }

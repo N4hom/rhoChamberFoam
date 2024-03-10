@@ -1,0 +1,7 @@
+SOURCE = \
+fluxScheme/fluxScheme.C \
+fluxScheme/newFluxScheme.C \
+Kurganov/Kurganov.C \
+HLLC/HLLC.C \
+
+# sources

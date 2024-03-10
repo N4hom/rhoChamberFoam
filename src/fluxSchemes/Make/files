@@ -1,0 +1,12 @@
+fluxScheme/fluxScheme.C
+fluxScheme/newFluxScheme.C
+Kurganov/Kurganov.C
+HLLC/HLLC.C
+/*
+HLLCP/HLLCP.C
+HLL/HLL.C
+Tadmor/Tadmor.C
+*/
+
+
+LIB = $(FOAM_USER_LIBBIN)/libfluxSchemes

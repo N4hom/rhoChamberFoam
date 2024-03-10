@@ -47,7 +47,7 @@ mixture
         {
             mod         log10;
 
-            n           7;
+            n           50;
             delta       1.0;
             min         -3.0;
             isReal      false;
@@ -56,7 +56,7 @@ mixture
         {
             mod         ln;
 
-            n           40;
+            n           50;
             min         11.8748;
             delta       1.0;
             isReal      false;
@@ -73,10 +73,11 @@ mixture
             flipTable   false;
         }
 
-        rhoCoeffs
+         rhoCoeffs
         {
             mod         log10;
-            n           7;
+
+            n           50;
             delta       1.0;
             min         -3.0;
             isReal      false;
@@ -84,9 +85,10 @@ mixture
         eCoeffs
         {
             mod         ln;
-            n           40;
+
+            n           50;
             min         11.8748;
-            delta       0.1;
+            delta       1.0;
             isReal      false;
         }
     }

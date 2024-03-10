@@ -2,21 +2,6 @@
 
 Info<< "Reading thermophysical properties\n" << endl;
 
-
-/*autoPtr<rhoThermo> pThermo
-(
-    rhoThermo::New(mesh)
-);
-
-rhoThermo& thermo = pThermo();*/
-
-/*autoPtr<myThermo> pThermo
-(
-    myThermo::New(mesh)
-);
-
-myThermo& thermo = pThermo();*/
-
 autoPtr<myRhoThermo> pThermo
 (
     myRhoThermo::New(mesh)
@@ -24,13 +9,11 @@ autoPtr<myRhoThermo> pThermo
 
 myRhoThermo& thermo = pThermo();
 
-
 volScalarField& e = thermo.eRef();
 
 volScalarField& rho = thermo.getRho();
 
 Info<< "Reading field U\n" << endl;
-
 
 volVectorField U
 (
@@ -124,7 +107,63 @@ surfaceScalarField neg
     dimensionedScalar("neg", dimless, -1.0)
 );
 
-surfaceScalarField phi("phi", fvc::flux(rhoU));
+surfaceScalarField phi
+(
+    IOobject
+    (
+        "phi",
+        mesh.time().timeName(),
+        mesh,
+        IOobject::NO_READ,
+        IOobject::NO_WRITE
+    ),
+    mesh,
+    dimensionedScalar("0", dimVelocity*dimArea, 0.0)
+);
+
+surfaceScalarField phiRhop
+(
+    IOobject
+    (
+        "phi",
+        mesh.time().timeName(),
+        mesh,
+        IOobject::NO_READ,
+        IOobject::NO_WRITE
+    ),
+    mesh,
+    dimensionedScalar("0", dimVelocity*dimArea*dimDensity, 0.0)
+);
+
+surfaceVectorField phiUp
+(
+    IOobject
+    (
+        "phiUp",
+        mesh.time().timeName(),
+        mesh,
+        IOobject::NO_READ,
+        IOobject::NO_WRITE
+    ),
+    mesh,
+    dimensionedVector("0", dimDensity*sqr(dimVelocity)*dimArea, Zero)
+);
+
+surfaceScalarField phiEp
+(
+    IOobject
+    (
+        "phiEp",
+        mesh.time().timeName(),
+        mesh,
+        IOobject::NO_READ,
+        IOobject::NO_WRITE
+    ),
+    mesh,
+    dimensionedScalar("0", dimDensity*pow3(dimVelocity)*dimArea, 0.0)
+);
+
+autoPtr<Foam::fluxScheme> fluxSchemeFields(Foam::fluxScheme::New(mesh));
 
 
 #include "createRadiationModel.H"
