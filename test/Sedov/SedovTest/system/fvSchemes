@@ -40,7 +40,7 @@ laplacianSchemes
 
 interpolationSchemes
 {
-    default         linear;
+    default         upwind;
 
     reconstruct(rho) upwind;
     reconstruct(U)  upwind;

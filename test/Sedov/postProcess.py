@@ -13,7 +13,7 @@ a = 344.0
 
 print(A)
 # rhoCentralFoam
-rhoCentralFoam = np.loadtxt('SedovTestRhoCentral/postProcessing/sampleDict/0.0001/Centerline_p_rho_U.xy')
+rhoCentralFoam = np.loadtxt('SedovTest/postProcessing/sampleDict/0.0001/Centerline_p_rho_U.xy')
 
 axialDistanceRhoCentralFoam = rhoCentralFoam[:, 0]
 pressureRhoCentralFoam = rhoCentralFoam[:, 1]
@@ -21,12 +21,12 @@ densityRhoCentralFoam = rhoCentralFoam[:, 2]
 velRhoCentralFoam = rhoCentralFoam[:, 3]
 
 # chamberFoam
-chamberFoam = np.loadtxt('SedovTest/postProcessing/sampleDict/0.0001/Centerline_p_rho_U.xy')
+rhoChamberFoamHLLC = np.loadtxt('SedovHLLC/postProcessing/sampleDict/0.0001/Centerline_p_rho_U.xy')
 
-axialDistanceChamberFoam = chamberFoam[:, 0]
-pressureChamberFoam = chamberFoam[:, 1]
-densityChamberFoam = chamberFoam[:, 2]
-velChamberFoam = chamberFoam[:, 3]
+axialDistanceChamberFoam = rhoChamberFoamHLLC[:, 0]
+pressureChamberFoam = rhoChamberFoamHLLC[:, 1]
+densityChamberFoam = rhoChamberFoamHLLC[:, 2]
+velChamberFoam = rhoChamberFoamHLLC[:, 3]
 
 blastFoam = np.loadtxt('Sedov_3D/postProcessing/sampleDict/0.0001/Centerline_p_rho_U.xy')
 
@@ -59,7 +59,7 @@ print("Analytical : " , f[0]/max(f))
 plt.figure(1)
 plt.plot(axialDistanceBlastFoam/axialDistanceBlastFoam[idxMaxP], (pressureBlastFoam)/pressureBlastFoam[idxMaxP] , label='blastFoam')
 plt.plot(axialDistanceRhoCentralFoam/axialDistanceRhoCentralFoam[idxMaxP], (pressureRhoCentralFoam)/max(pressureRhoCentralFoam)  , label='rhoCentralFoam')
-plt.plot(axialDistanceChamberFoam/axialDistanceChamberFoam[idxMaxP], (pressureChamberFoam)/max(pressureChamberFoam) , label='chamberFoam')
+plt.plot(axialDistanceChamberFoam/axialDistanceChamberFoam[idxMaxP], (pressureChamberFoam)/max(pressureChamberFoam) , label='rhoChamberFoam HLLC')
 plt.plot(eta, f/max(f) , label='analytical')
 plt.xlim([0,1])
 plt.xlabel('x (a.u.)', fontsize=13)

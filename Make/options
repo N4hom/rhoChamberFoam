@@ -26,7 +26,8 @@ EXE_LIBS = \
     -L$(FOAM_USER_LIBBIN) -lmyFluidThermophysicalModels \
     -L$(FOAM_USER_LIBBIN) -lmySpecie \
     -L$(FOAM_USER_LIBBIN) -lmyRadiationModels \
-    -L$(FOAM_USER_LIBBIN) -lfluxSchemes/* \
+    -L$(FOAM_USER_LIBBIN) -lfluxSchemes \
+    -L$(FOAM_USER_LIBBIN) -lrhoCentralFoam /* \
     -L$(FOAM_USER_LIBBIN) -lTableReaders\*/
 
 

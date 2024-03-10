@@ -1,5 +1,0 @@
-SOURCE += U/maxwellSlipUFvPatchVectorField.C
-SOURCE += T/smoluchowskiJumpTFvPatchScalarField.C
-SOURCE += rho/fixedRhoFvPatchScalarField.C
-
-LIB = $(FOAM_LIBBIN)/librhoCentralFoam

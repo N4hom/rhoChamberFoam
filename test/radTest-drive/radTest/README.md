@@ -1,1 +1,0 @@
-Test case for radiation diffusion coupled with material energy equation
